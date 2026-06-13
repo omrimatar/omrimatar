@@ -15,49 +15,57 @@
     radial-gradient(1200px 600px at 80% -10%,#1b2750 0,transparent 60%),
     radial-gradient(900px 500px at 0% 0%,#162038 0,transparent 55%),var(--bg);
     color:var(--txt);min-height:100vh}
-  .wrap{max-width:1100px;margin:0 auto;padding:24px 16px 60px}
-  header.top{text-align:center;padding:30px 16px 14px}
-  header.top h1{margin:0;font-size:34px;letter-spacing:.5px}
+  .wrap{max-width:1150px;margin:0 auto;padding:24px 16px 60px}
+  header.top{text-align:center;padding:28px 16px 8px}
+  header.top h1{margin:0;font-size:32px;letter-spacing:.5px}
   header.top p{color:var(--muted);margin:8px 0 0;font-size:15px}
   .badgeDate{display:inline-block;margin-top:12px;background:var(--card2);
     border:1px solid var(--line);color:var(--gold);padding:6px 14px;border-radius:999px;font-size:13px}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:24px 0}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;text-align:center}
-  .stat .num{font-size:30px;font-weight:700;color:var(--accent)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:22px 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center}
+  .stat .num{font-size:28px;font-weight:700;color:var(--accent)}
   .stat .lbl{color:var(--muted);font-size:13px;margin-top:4px}
-  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0 20px}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0 18px}
   .chip{background:var(--card);border:1px solid var(--line);color:var(--txt);
-    padding:8px 16px;border-radius:999px;cursor:pointer;font-size:14px;transition:.15s}
+    padding:8px 16px;border-radius:999px;cursor:pointer;font-size:14px;transition:.15s;user-select:none}
   .chip:hover{border-color:var(--accent)}
   .chip.active{background:var(--accent);color:#06231f;font-weight:700;border-color:var(--accent)}
-  .groupTitle{margin:26px 0 10px;font-size:20px;color:var(--gold);
-    border-bottom:1px solid var(--line);padding-bottom:8px}
+  h2.sec{margin:30px 0 12px;font-size:21px;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:8px}
   table{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden}
   thead th{background:var(--card2);color:var(--muted);font-size:13px;text-align:center;
     padding:11px 8px;font-weight:600;white-space:nowrap}
-  tbody td{padding:11px 8px;text-align:center;border-top:1px solid var(--line);font-size:14px}
+  tbody td{padding:10px 8px;text-align:center;border-top:1px solid var(--line);font-size:14px;vertical-align:middle}
   tbody tr:hover{background:#19233f}
+  tr.datesep td{background:#10182e;color:var(--gold);font-weight:700;text-align:center;font-size:13px;padding:8px}
   .team{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
   .flag{font-size:18px}
-  .match{font-weight:600}
-  .vs{color:var(--muted);font-size:12px;margin:0 4px}
+  .rt{font-size:11px;color:#06231f;background:var(--accent);border-radius:6px;padding:1px 5px;font-weight:700}
+  .vs{color:var(--muted);font-size:12px;margin:0 6px}
   .score{font-weight:800;font-size:16px;letter-spacing:1px}
-  .score.real{color:var(--played)}
-  .score.pred{color:var(--future)}
+  .score.real{color:var(--played)} .score.pred{color:var(--future)}
   .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}
   .pill.played{background:rgba(34,197,94,.15);color:var(--played);border:1px solid rgba(34,197,94,.4)}
   .pill.future{background:rgba(251,146,60,.15);color:var(--future);border:1px solid rgba(251,146,60,.4)}
   .fav{color:var(--win)} .fav.draw{color:var(--draw)} .fav.none{color:var(--muted)}
   .note{color:var(--muted);font-size:12px}
   .tbd{color:var(--muted);font-style:italic}
-  footer{margin-top:36px;color:var(--muted);font-size:13px;text-align:center;line-height:1.7}
-  footer a{color:var(--accent);text-decoration:none}
+  .hidden{display:none}
+  /* ratings */
+  .rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+  .rrow{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:9px 12px}
+  .rrow .rk{color:var(--muted);font-size:13px;width:22px;text-align:center}
+  .rrow .nm{flex:1;display:flex;align-items:center;gap:7px;font-size:14px}
+  .bar{flex:1;height:8px;background:#0d1428;border-radius:6px;overflow:hidden;min-width:50px}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold))}
+  .rval{font-weight:700;color:var(--gold);width:28px;text-align:left;font-size:14px}
   .disc{background:var(--card);border:1px solid var(--line);border-radius:14px;
     padding:16px 20px;margin-top:26px;font-size:13px;color:var(--muted);line-height:1.8}
   .disc b{color:var(--txt)}
+  footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center;line-height:1.7}
   @media(max-width:640px){
-    thead th:nth-child(2),tbody td:nth-child(2){display:none}
-    header.top h1{font-size:26px}
+    thead th:nth-child(7),tbody td:nth-child(7){display:none}
+    header.top h1{font-size:24px}
   }
 </style>
 </head>
@@ -65,38 +73,49 @@
 <div class="wrap">
   <header class="top">
     <h1>🏆 חיזוי תוצאות מונדיאל 2026</h1>
-    <p>ארה״ב · קנדה · מקסיקו — 11.6 עד 19.7.2026 · כל 104 המשחקים</p>
+    <p>ארה״ב · קנדה · מקסיקו — 11.6 עד 19.7.2026 · כל 104 המשחקים, ממוינים לפי תאריך</p>
     <span class="badgeDate">עודכן: 13.6.2026</span>
   </header>
 
   <div class="cards">
     <div class="stat"><div class="num">104</div><div class="lbl">סך המשחקים</div></div>
-    <div class="stat"><div class="num" id="cPlayed">0</div><div class="lbl">הסתיימו (תוצאת אמת)</div></div>
-    <div class="stat"><div class="num" id="cFuture">0</div><div class="lbl">עתידיים (חיזוי)</div></div>
-    <div class="stat"><div class="num" style="color:var(--gold)">🇪🇸</div><div class="lbl">מועמדת לאליפות</div></div>
+    <div class="stat"><div class="num" id="cPlayed">0</div><div class="lbl">הסתיימו</div></div>
+    <div class="stat"><div class="num" id="cFuture">0</div><div class="lbl">עתידיים</div></div>
+    <div class="stat"><div class="num" style="color:var(--gold)">🇪🇸 92</div><div class="lbl">דירוג מוביל (ספרד)</div></div>
   </div>
 
   <div class="filters" id="filters">
-    <span class="chip active" data-f="all">הכול</span>
+    <span class="chip active" data-f="all">כל המשחקים</span>
     <span class="chip" data-f="played">הסתיימו</span>
     <span class="chip" data-f="future">עתידיים</span>
     <span class="chip" data-f="group">שלב הבתים</span>
     <span class="chip" data-f="ko">נוקאאוט</span>
   </div>
 
-  <div id="content"></div>
+  <h2 class="sec">📅 כל המשחקים לפי תאריך</h2>
+  <table>
+    <thead><tr>
+      <th>#</th><th>תאריך</th><th>שלב</th><th>משחק (עם דירוג כוח)</th>
+      <th>סטטוס</th><th>תוצאה</th><th>מועדפת</th><th>הערה</th>
+    </tr></thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <h2 class="sec">⭐ דירוג כוח הנבחרות (0–100)</h2>
+  <p class="note" style="margin:0 0 12px">מדד מורכב המבוסס על יחסי ההימור לאליפות, דירוג פיפ״א/עוצמה כללית, ותוצאות המחזור הראשון עד היום.</p>
+  <div class="rgrid" id="ratings"></div>
 
   <div class="disc">
-    <b>שיטת החיזוי:</b> למשחקים שהסתיימו מוצגת התוצאה האמיתית ומצוין <b>"אין הימור"</b>.
-    למשחקים עתידיים — התוצאה הסבירה ביותר נגזרת מ<b>הקבוצה המועדפת בשוק ההימורים</b> +
-    פער עוצמה בין הקבוצות + יתרון בית למארחות. אלו הערכות מבוססות-שוק, לא תחזית ודאית ולא המלצת הימור.<br>
-    <b>נוקאאוט:</b> היריבות תלויות בתוצאות שלב הבתים ולכן מסומנות "יקבע".
-    <b>מועמדות מובילות לאליפות:</b> ספרד, צרפת, אנגליה, ברזיל, פורטוגל, ארגנטינה.
+    <b>שיטת החיזוי:</b> למשחקים שהסתיימו מוצגת התוצאה האמיתית ומצוין "אין הימור".
+    למשחקים עתידיים — התוצאה הסבירה ביותר נגזרת מ<b>הקבוצה המועדפת בשוק ההימורים</b> + פער <b>דירוג הכוח</b> + יתרון בית.
+    אלו הערכות, לא תחזית ודאית ולא המלצת הימור.<br>
+    <b>דירוג כוח:</b> סולם 0–100 — ערך גבוה = נבחרת חזקה יותר. מתעדכן לפי תוצאות.
+    <b>נוקאאוט:</b> היריבות תלויות בשלב הבתים ולכן מסומנות "יקבע".
   </div>
 
   <footer>
     מקורות: FIFA · Wikipedia (Groups A–L) · ESPN · Yahoo Sports Betting Odds<br>
-    התוצאה מוצגת בפורמט מארחת–אורחת (למשל 2–1 = 2 למארחת).
+    התוצאה בפורמט מארחת–אורחת (למשל 2–1 = 2 למארחת).
   </footer>
 </div>
 
@@ -108,80 +127,90 @@ const FLAG={"Mexico":"🇲🇽","South Africa":"🇿🇦","South Korea":"🇰�
 "Japan":"🇯🇵","Sweden":"🇸🇪","Tunisia":"🇹🇳","Belgium":"🇧🇪","Egypt":"🇪🇬","Iran":"🇮🇷","New Zealand":"🇳🇿",
 "Spain":"🇪🇸","Cape Verde":"🇨🇻","Saudi Arabia":"🇸🇦","Uruguay":"🇺🇾","France":"🇫🇷","Senegal":"🇸🇳",
 "Iraq":"🇮🇶","Norway":"🇳🇴","Argentina":"🇦🇷","Algeria":"🇩🇿","Austria":"🇦🇹","Jordan":"🇯🇴","Portugal":"🇵🇹",
-"DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
+"DR Congo":"🇨🇩","Uzbekistan":"🇺🇿","Colombia":"🇨🇴","England":"🏴󠁧󠁢󠁥󠁮󠁗󠁿","Croatia":"🇭🇷","Ghana":"🇬🇭","Panama":"🇵🇦"};
+FLAG["England"]="🏴󠁧󠁢󠁥󠁮󠁧󠁿";
 
-// num,date,stage,group,home,away,status,real,pred,fav,note
+const RATING={"Spain":92,"France":91,"Argentina":89,"Brazil":88,"England":88,"Portugal":86,
+"Germany":84,"Netherlands":82,"Belgium":80,"Croatia":78,"Uruguay":78,"Morocco":78,"Colombia":76,
+"Senegal":75,"Mexico":75,"Switzerland":74,"Japan":74,"United States":74,"Ecuador":72,"Norway":71,
+"Sweden":70,"Turkey":70,"South Korea":70,"Austria":69,"Egypt":68,"Ivory Coast":68,"Canada":67,
+"Czech Republic":66,"Iran":66,"Algeria":66,"Australia":65,"Scotland":64,"Ghana":64,
+"Bosnia and Herzegovina":64,"Tunisia":63,"Paraguay":62,"DR Congo":62,"Uzbekistan":62,"Qatar":61,
+"Saudi Arabia":60,"Panama":60,"South Africa":59,"Iraq":58,"Cape Verde":58,"New Zealand":57,
+"Jordan":57,"Curacao":56,"Haiti":56};
+
+// num,date,stage,group,home,away,status,real,pred,fav,note   (stage: בתים => group; else knockout)
 const D=[
 [1,"2026-06-11","בתים","A","Mexico","South Africa","played","2-0","","","אין הימור"],
 [2,"2026-06-11","בתים","A","South Korea","Czech Republic","played","2-1","","","אין הימור"],
-[3,"2026-06-18","בתים","A","Czech Republic","South Africa","future","","1-0","Czech Republic",""],
-[4,"2026-06-18","בתים","A","Mexico","South Korea","future","","2-1","Mexico","יתרון בית"],
-[5,"2026-06-24","בתים","A","Czech Republic","Mexico","future","","1-2","Mexico","יתרון בית"],
-[6,"2026-06-24","בתים","A","South Africa","South Korea","future","","1-2","South Korea",""],
 [7,"2026-06-12","בתים","B","Canada","Bosnia and Herzegovina","played","1-1","","","אין הימור"],
-[8,"2026-06-13","בתים","B","Qatar","Switzerland","future","","0-2","Switzerland","מתקיים היום"],
-[9,"2026-06-18","בתים","B","Switzerland","Bosnia and Herzegovina","future","","2-1","Switzerland",""],
-[10,"2026-06-18","בתים","B","Canada","Qatar","future","","2-0","Canada","יתרון בית"],
-[11,"2026-06-24","בתים","B","Switzerland","Canada","future","","1-1","draw","צמוד"],
-[12,"2026-06-24","בתים","B","Bosnia and Herzegovina","Qatar","future","","2-1","Bosnia and Herzegovina",""],
+[19,"2026-06-12","בתים","D","United States","Paraguay","played","4-1","","","אין הימור"],
 [13,"2026-06-13","בתים","C","Brazil","Morocco","played","0-0","","","אין הימור"],
 [14,"2026-06-13","בתים","C","Haiti","Scotland","played","0-0","","","אין הימור"],
-[15,"2026-06-19","בתים","C","Scotland","Morocco","future","","0-1","Morocco",""],
-[16,"2026-06-19","בתים","C","Brazil","Haiti","future","","3-0","Brazil",""],
-[17,"2026-06-24","בתים","C","Scotland","Brazil","future","","0-2","Brazil",""],
-[18,"2026-06-24","בתים","C","Morocco","Haiti","future","","2-0","Morocco",""],
-[19,"2026-06-12","בתים","D","United States","Paraguay","played","4-1","","","אין הימור"],
+[8,"2026-06-13","בתים","B","Qatar","Switzerland","future","","0-2","Switzerland","מתקיים היום"],
 [20,"2026-06-13","בתים","D","Australia","Turkey","future","","1-2","Turkey","מתקיים היום"],
-[21,"2026-06-19","בתים","D","United States","Australia","future","","2-0","United States","יתרון בית"],
-[22,"2026-06-19","בתים","D","Turkey","Paraguay","future","","2-1","Turkey",""],
-[23,"2026-06-25","בתים","D","Turkey","United States","future","","1-2","United States",""],
-[24,"2026-06-25","בתים","D","Paraguay","Australia","future","","1-1","draw","צמוד"],
 [25,"2026-06-14","בתים","E","Germany","Curacao","future","","3-0","Germany",""],
 [26,"2026-06-14","בתים","E","Ivory Coast","Ecuador","future","","1-1","Ecuador","צמוד"],
-[27,"2026-06-20","בתים","E","Germany","Ivory Coast","future","","2-0","Germany",""],
-[28,"2026-06-20","בתים","E","Ecuador","Curacao","future","","2-0","Ecuador",""],
-[29,"2026-06-25","בתים","E","Curacao","Ivory Coast","future","","0-2","Ivory Coast",""],
-[30,"2026-06-25","בתים","E","Ecuador","Germany","future","","1-2","Germany",""],
 [31,"2026-06-14","בתים","F","Netherlands","Japan","future","","2-1","Netherlands",""],
 [32,"2026-06-14","בתים","F","Sweden","Tunisia","future","","1-0","Sweden",""],
-[33,"2026-06-20","בתים","F","Netherlands","Sweden","future","","2-0","Netherlands",""],
-[34,"2026-06-20","בתים","F","Tunisia","Japan","future","","0-1","Japan",""],
-[35,"2026-06-25","בתים","F","Japan","Sweden","future","","2-1","Japan",""],
-[36,"2026-06-25","בתים","F","Tunisia","Netherlands","future","","0-2","Netherlands",""],
 [37,"2026-06-15","בתים","G","Belgium","Egypt","future","","2-0","Belgium",""],
 [38,"2026-06-15","בתים","G","Iran","New Zealand","future","","2-0","Iran",""],
-[39,"2026-06-21","בתים","G","Belgium","Iran","future","","2-0","Belgium",""],
-[40,"2026-06-21","בתים","G","New Zealand","Egypt","future","","0-2","Egypt",""],
-[41,"2026-06-26","בתים","G","Egypt","Iran","future","","1-1","draw","צמוד"],
-[42,"2026-06-26","בתים","G","New Zealand","Belgium","future","","0-3","Belgium",""],
 [43,"2026-06-15","בתים","H","Spain","Cape Verde","future","","3-0","Spain",""],
 [44,"2026-06-15","בתים","H","Saudi Arabia","Uruguay","future","","0-2","Uruguay",""],
-[45,"2026-06-21","בתים","H","Spain","Saudi Arabia","future","","3-0","Spain",""],
-[46,"2026-06-21","בתים","H","Uruguay","Cape Verde","future","","2-0","Uruguay",""],
-[47,"2026-06-26","בתים","H","Cape Verde","Saudi Arabia","future","","1-1","draw","צמוד"],
-[48,"2026-06-26","בתים","H","Uruguay","Spain","future","","1-2","Spain",""],
 [49,"2026-06-16","בתים","I","France","Senegal","future","","2-1","France",""],
 [50,"2026-06-16","בתים","I","Iraq","Norway","future","","0-2","Norway",""],
-[51,"2026-06-22","בתים","I","France","Iraq","future","","3-0","France",""],
-[52,"2026-06-22","בתים","I","Norway","Senegal","future","","1-1","draw","צמוד"],
-[53,"2026-06-26","בתים","I","Norway","France","future","","1-2","France",""],
-[54,"2026-06-26","בתים","I","Senegal","Iraq","future","","2-0","Senegal",""],
 [55,"2026-06-16","בתים","J","Argentina","Algeria","future","","2-0","Argentina",""],
 [56,"2026-06-16","בתים","J","Austria","Jordan","future","","2-0","Austria",""],
-[57,"2026-06-22","בתים","J","Argentina","Austria","future","","2-0","Argentina",""],
-[58,"2026-06-22","בתים","J","Jordan","Algeria","future","","0-2","Algeria",""],
-[59,"2026-06-27","בתים","J","Algeria","Austria","future","","1-1","draw","צמוד"],
-[60,"2026-06-27","בתים","J","Jordan","Argentina","future","","0-3","Argentina",""],
 [61,"2026-06-17","בתים","K","Portugal","DR Congo","future","","2-0","Portugal",""],
 [62,"2026-06-17","בתים","K","Uzbekistan","Colombia","future","","0-2","Colombia",""],
-[63,"2026-06-23","בתים","K","Portugal","Uzbekistan","future","","2-0","Portugal",""],
-[64,"2026-06-23","בתים","K","Colombia","DR Congo","future","","2-0","Colombia",""],
-[65,"2026-06-27","בתים","K","Colombia","Portugal","future","","1-1","Portugal","צמוד"],
-[66,"2026-06-27","בתים","K","DR Congo","Uzbekistan","future","","1-1","draw","צמוד"],
 [67,"2026-06-17","בתים","L","England","Croatia","future","","2-1","England",""],
 [68,"2026-06-17","בתים","L","Ghana","Panama","future","","1-0","Ghana",""],
+[3,"2026-06-18","בתים","A","Czech Republic","South Africa","future","","1-0","Czech Republic",""],
+[4,"2026-06-18","בתים","A","Mexico","South Korea","future","","2-1","Mexico","יתרון בית"],
+[9,"2026-06-18","בתים","B","Switzerland","Bosnia and Herzegovina","future","","2-1","Switzerland",""],
+[10,"2026-06-18","בתים","B","Canada","Qatar","future","","2-0","Canada","יתרון בית"],
+[15,"2026-06-19","בתים","C","Scotland","Morocco","future","","0-1","Morocco",""],
+[16,"2026-06-19","בתים","C","Brazil","Haiti","future","","3-0","Brazil",""],
+[21,"2026-06-19","בתים","D","United States","Australia","future","","2-0","United States","יתרון בית"],
+[22,"2026-06-19","בתים","D","Turkey","Paraguay","future","","2-1","Turkey",""],
+[33,"2026-06-20","בתים","F","Netherlands","Sweden","future","","2-0","Netherlands",""],
+[34,"2026-06-20","בתים","F","Tunisia","Japan","future","","0-1","Japan",""],
+[27,"2026-06-20","בתים","E","Germany","Ivory Coast","future","","2-0","Germany",""],
+[28,"2026-06-20","בתים","E","Ecuador","Curacao","future","","2-0","Ecuador",""],
+[39,"2026-06-21","בתים","G","Belgium","Iran","future","","2-0","Belgium",""],
+[40,"2026-06-21","בתים","G","New Zealand","Egypt","future","","0-2","Egypt",""],
+[45,"2026-06-21","בתים","H","Spain","Saudi Arabia","future","","3-0","Spain",""],
+[46,"2026-06-21","בתים","H","Uruguay","Cape Verde","future","","2-0","Uruguay",""],
+[51,"2026-06-22","בתים","I","France","Iraq","future","","3-0","France",""],
+[52,"2026-06-22","בתים","I","Norway","Senegal","future","","1-1","draw","צמוד"],
+[57,"2026-06-22","בתים","J","Argentina","Austria","future","","2-0","Argentina",""],
+[58,"2026-06-22","בתים","J","Jordan","Algeria","future","","0-2","Algeria",""],
+[63,"2026-06-23","בתים","K","Portugal","Uzbekistan","future","","2-0","Portugal",""],
+[64,"2026-06-23","בתים","K","Colombia","DR Congo","future","","2-0","Colombia",""],
 [69,"2026-06-23","בתים","L","England","Ghana","future","","2-0","England",""],
 [70,"2026-06-23","בתים","L","Panama","Croatia","future","","0-2","Croatia",""],
+[5,"2026-06-24","בתים","A","Czech Republic","Mexico","future","","1-2","Mexico","יתרון בית"],
+[6,"2026-06-24","בתים","A","South Africa","South Korea","future","","1-2","South Korea",""],
+[11,"2026-06-24","בתים","B","Switzerland","Canada","future","","1-1","draw","צמוד"],
+[12,"2026-06-24","בתים","B","Bosnia and Herzegovina","Qatar","future","","2-1","Bosnia and Herzegovina",""],
+[17,"2026-06-24","בתים","C","Scotland","Brazil","future","","0-2","Brazil",""],
+[18,"2026-06-24","בתים","C","Morocco","Haiti","future","","2-0","Morocco",""],
+[23,"2026-06-25","בתים","D","Turkey","United States","future","","1-2","United States",""],
+[24,"2026-06-25","בתים","D","Paraguay","Australia","future","","1-1","draw","צמוד"],
+[29,"2026-06-25","בתים","E","Curacao","Ivory Coast","future","","0-2","Ivory Coast",""],
+[30,"2026-06-25","בתים","E","Ecuador","Germany","future","","1-2","Germany",""],
+[35,"2026-06-25","בתים","F","Japan","Sweden","future","","2-1","Japan",""],
+[36,"2026-06-25","בתים","F","Tunisia","Netherlands","future","","0-2","Netherlands",""],
+[41,"2026-06-26","בתים","G","Egypt","Iran","future","","1-1","draw","צמוד"],
+[42,"2026-06-26","בתים","G","New Zealand","Belgium","future","","0-3","Belgium",""],
+[47,"2026-06-26","בתים","H","Cape Verde","Saudi Arabia","future","","1-1","draw","צמוד"],
+[48,"2026-06-26","בתים","H","Uruguay","Spain","future","","1-2","Spain",""],
+[53,"2026-06-26","בתים","I","Norway","France","future","","1-2","France",""],
+[54,"2026-06-26","בתים","I","Senegal","Iraq","future","","2-0","Senegal",""],
+[59,"2026-06-27","בתים","J","Algeria","Austria","future","","1-1","draw","צמוד"],
+[60,"2026-06-27","בתים","J","Jordan","Argentina","future","","0-3","Argentina",""],
+[65,"2026-06-27","בתים","K","Colombia","Portugal","future","","1-1","Portugal","צמוד"],
+[66,"2026-06-27","בתים","K","DR Congo","Uzbekistan","future","","1-1","draw","צמוד"],
 [71,"2026-06-27","בתים","L","Panama","England","future","","0-3","England",""],
 [72,"2026-06-27","בתים","L","Croatia","Ghana","future","","2-0","Croatia",""],
 [73,"2026-06-28","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
@@ -190,16 +219,16 @@ const D=[
 [76,"2026-06-29","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [77,"2026-06-30","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [78,"2026-06-30","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
+[87,"2026-06-30","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [79,"2026-07-01","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [80,"2026-07-01","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
+[88,"2026-07-01","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [81,"2026-07-02","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [82,"2026-07-02","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
+[85,"2026-07-02","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [83,"2026-07-03","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [84,"2026-07-03","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
-[85,"2026-07-02","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [86,"2026-07-03","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
-[87,"2026-06-30","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
-[88,"2026-07-01","שלב 32","","","","future","","","","תלוי בתוצאות הבתים"],
 [89,"2026-07-04","שמינית גמר","","","","future","","","","תלוי בתוצאות שלב 32"],
 [90,"2026-07-04","שמינית גמר","","","","future","","","","תלוי בתוצאות שלב 32"],
 [91,"2026-07-05","שמינית גמר","","","","future","","","","תלוי בתוצאות שלב 32"],
@@ -208,25 +237,26 @@ const D=[
 [94,"2026-07-06","שמינית גמר","","","","future","","","","תלוי בתוצאות שלב 32"],
 [95,"2026-07-07","שמינית גמר","","","","future","","","","תלוי בתוצאות שלב 32"],
 [96,"2026-07-07","שמינית גמר","","","","future","","","","תלוי בתוצאות שלב 32"],
-[97,"2026-07-09","רבע גמר","","","","future","","","","תלוי בתוצאות שמינית הגמר"],
-[98,"2026-07-10","רבע גמר","","","","future","","","","תלוי בתוצאות שמינית הגמר"],
-[99,"2026-07-10","רבע גמר","","","","future","","","","תלוי בתוצאות שמינית הגמר"],
-[100,"2026-07-11","רבע גמר","","","","future","","","","תלוי בתוצאות שמינית הגמר"],
-[101,"2026-07-14","חצי גמר","","","","future","","","","תלוי בתוצאות רבע הגמר"],
-[102,"2026-07-15","חצי גמר","","","","future","","","","תלוי בתוצאות רבע הגמר"],
-[103,"2026-07-18","מקום שלישי","","","","future","","","","תלוי בתוצאות חצי הגמר"],
-[104,"2026-07-19","גמר","","","","future","","","Spain","מועמדת מועדפת לאליפות"]
+[97,"2026-07-09","רבע גמר","","","","future","","","","תלוי בשמינית הגמר"],
+[98,"2026-07-10","רבע גמר","","","","future","","","","תלוי בשמינית הגמר"],
+[99,"2026-07-10","רבע גמר","","","","future","","","","תלוי בשמינית הגמר"],
+[100,"2026-07-11","רבע גמר","","","","future","","","","תלוי בשמינית הגמר"],
+[101,"2026-07-14","חצי גמר","","","","future","","","","תלוי ברבע הגמר"],
+[102,"2026-07-15","חצי גמר","","","","future","","","","תלוי ברבע הגמר"],
+[103,"2026-07-18","מקום שלישי","","","","future","","","","תלוי בחצי הגמר"],
+[104,"2026-07-19","גמר","","","","future","","","Spain","מועמדת מובילה לאליפות"]
 ];
-
 const K=["num","date","stage","group","home","away","status","real","pred","fav","note"];
-const ROWS=D.map(r=>Object.fromEntries(r.map((v,i)=>[K[i],v])));
+let ROWS=D.map(r=>Object.fromEntries(r.map((v,i)=>[K[i],v])));
+ROWS.sort((a,b)=> a.date<b.date?-1 : a.date>b.date?1 : a.num-b.num);
 
 document.getElementById("cPlayed").textContent=ROWS.filter(r=>r.status==="played").length;
 document.getElementById("cFuture").textContent=ROWS.filter(r=>r.status==="future").length;
 
+function rtChip(name){const v=RATING[name]; return v?'<span class="rt">'+v+'</span>':'';}
 function team(name){
   if(!name) return '<span class="tbd">יקבע</span>';
-  return '<span class="team"><span class="flag">'+(FLAG[name]||"⚽")+'</span>'+name+'</span>';
+  return '<span class="team"><span class="flag">'+(FLAG[name]||"⚽")+'</span>'+name+' '+rtChip(name)+'</span>';
 }
 function favCell(r){
   if(r.status==="played") return '<span class="fav none">—</span>';
@@ -234,63 +264,69 @@ function favCell(r){
   if(!r.fav) return '<span class="fav none">—</span>';
   return '<span class="fav">'+(FLAG[r.fav]||"")+' '+r.fav+'</span>';
 }
-function row(r){
+function heMonth(d){const[,m,day]=d.split("-");const M={"06":"יוני","07":"יולי"};return +day+" ב"+(M[m]||m);}
+
+const tb=document.getElementById("tbody");
+let html="",lastDate="";
+ROWS.forEach(r=>{
+  if(r.date!==lastDate){
+    html+='<tr class="datesep"><td colspan="8">📅 '+heMonth(r.date)+' 2026</td></tr>';
+    lastDate=r.date;
+  }
   const isKO=!r.home;
   const score = r.status==="played"
     ? '<span class="score real">'+r.real+'</span>'
     : (r.pred?'<span class="score pred">'+r.pred+'</span>':'<span class="tbd">—</span>');
-  return '<tr>'+
+  const ko = isKO?1:0;
+  html+='<tr data-status="'+r.status+'" data-ko="'+ko+'">'+
     '<td>'+r.num+'</td>'+
     '<td>'+r.date.slice(5).replace("-","/")+'</td>'+
-    '<td class="match">'+team(r.home)+(isKO?'':'<span class="vs">נגד</span>'+team(r.away))+'</td>'+
+    '<td>'+r.stage+'</td>'+
+    '<td>'+team(r.home)+(isKO?'':'<span class="vs">נגד</span>'+team(r.away))+'</td>'+
     '<td><span class="pill '+r.status+'">'+(r.status==="played"?"הסתיים":"עתידי")+'</span></td>'+
     '<td>'+score+'</td>'+
     '<td>'+favCell(r)+'</td>'+
     '<td class="note">'+(r.note||'')+'</td>'+
   '</tr>';
-}
-function tableFor(rows){
-  return '<table><thead><tr>'+
-    '<th>#</th><th>תאריך</th><th>משחק</th><th>סטטוס</th><th>תוצאה</th><th>מועדפת</th><th>הערה</th>'+
-    '</tr></thead><tbody>'+rows.map(row).join('')+'</tbody></table>';
-}
+});
+tb.innerHTML=html;
 
-function render(f){
-  let rows=ROWS;
-  if(f==="played") rows=ROWS.filter(r=>r.status==="played");
-  else if(f==="future") rows=ROWS.filter(r=>r.status==="future");
-  else if(f==="group") rows=ROWS.filter(r=>r.stage==="בתים");
-  else if(f==="ko") rows=ROWS.filter(r=>r.stage!=="בתים");
-
-  const c=document.getElementById("content");
-  if(f==="group"||f==="all"){
-    let html="";
-    const groups=["A","B","C","D","E","F","G","H","I","J","K","L"];
-    groups.forEach(g=>{
-      const gr=rows.filter(r=>r.group===g);
-      if(gr.length){html+='<h2 class="groupTitle">בית '+g+'</h2>'+tableFor(gr);}
-    });
-    const ko=rows.filter(r=>r.stage!=="בתים");
-    if(ko.length){
-      ["שלב 32","שמינית גמר","רבע גמר","חצי גמר","מקום שלישי","גמר"].forEach(s=>{
-        const sr=ko.filter(r=>r.stage===s);
-        if(sr.length){html+='<h2 class="groupTitle">'+s+'</h2>'+tableFor(sr);}
-      });
-    }
-    c.innerHTML=html;
-  } else {
-    c.innerHTML=tableFor(rows);
-  }
+// Robust filter: toggle row visibility (no re-render)
+function applyFilter(f){
+  document.querySelectorAll("#tbody tr").forEach(tr=>{
+    if(tr.classList.contains("datesep")){tr.classList.remove("hidden");return;}
+    const st=tr.dataset.status, ko=tr.dataset.ko;
+    let show=true;
+    if(f==="played") show = st==="played";
+    else if(f==="future") show = st==="future";
+    else if(f==="group") show = ko==="0";
+    else if(f==="ko") show = ko==="1";
+    tr.classList.toggle("hidden",!show);
+  });
+  // hide date separators with no visible match rows
+  let cur=null,curHas=false;
+  document.querySelectorAll("#tbody tr").forEach(tr=>{
+    if(tr.classList.contains("datesep")){ if(cur&&!curHas)cur.classList.add("hidden"); cur=tr;curHas=false; }
+    else if(!tr.classList.contains("hidden")) curHas=true;
+  });
+  if(cur&&!curHas)cur.classList.add("hidden");
 }
-
 document.querySelectorAll(".chip").forEach(ch=>{
-  ch.onclick=()=>{
+  ch.addEventListener("click",()=>{
     document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
     ch.classList.add("active");
-    render(ch.dataset.f);
-  };
+    applyFilter(ch.dataset.f);
+  });
 });
-render("all");
+
+// ratings board
+const rated=Object.entries(RATING).sort((a,b)=>b[1]-a[1]);
+document.getElementById("ratings").innerHTML=rated.map(([n,v],i)=>
+  '<div class="rrow"><span class="rk">'+(i+1)+'</span>'+
+  '<span class="nm"><span class="flag">'+(FLAG[n]||"⚽")+'</span>'+n+'</span>'+
+  '<span class="bar"><i style="width:'+v+'%"></i></span>'+
+  '<span class="rval">'+v+'</span></div>'
+).join('');
 </script>
 </body>
 </html>
