@@ -41,8 +41,17 @@
   .flag{font-size:18px}
   .rt{font-size:11px;color:#06231f;background:var(--accent);border-radius:6px;padding:1px 5px;font-weight:700}
   .vs{color:var(--muted);font-size:12px;margin:0 6px}
-  .score{font-weight:800;font-size:16px;letter-spacing:1px}
-  .score.real{color:var(--played)} .score.pred{color:var(--future)}
+  /* scoreboard inside match cell */
+  .sb{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:nowrap}
+  .sb .side{display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .sb .dash{color:var(--muted);font-weight:700;font-size:16px}
+  .g{font-size:22px;font-weight:800;min-width:22px;text-align:center;
+    background:#0d1428;border-radius:8px;padding:2px 8px}
+  .g.real{color:var(--played)} .g.pred{color:var(--future)} .g.none{color:var(--muted)}
+  .legend{display:flex;flex-wrap:wrap;gap:16px;color:var(--muted);font-size:13px;margin:0 0 14px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .sw{width:14px;height:14px;border-radius:4px;display:inline-block}
+  .sw.real{background:var(--played)} .sw.pred{background:var(--future)}
   .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700}
   .pill.played{background:rgba(34,197,94,.15);color:var(--played);border:1px solid rgba(34,197,94,.4)}
   .pill.future{background:rgba(251,146,60,.15);color:var(--future);border:1px solid rgba(251,146,60,.4)}
@@ -88,11 +97,15 @@
     tbody td::before{content:attr(data-label);color:var(--muted);font-size:12px;
       font-weight:700;flex-shrink:0}
     /* match cell gets its own emphasized block */
-    td.matchcell{flex-direction:column;align-items:stretch;gap:6px;padding:10px 0}
+    td.matchcell{flex-direction:column;align-items:stretch;gap:6px;padding:12px 0}
     td.matchcell::before{margin-bottom:2px}
     td.matchcell .team{font-size:15px;font-weight:600}
-    td.matchcell .vs{display:block;text-align:center;margin:2px 0}
-    .score{font-size:18px}
+    /* scoreboard -> two stacked lines, team on right, goals on left */
+    td.matchcell .sb{flex-direction:column;align-items:stretch;gap:8px;width:100%}
+    td.matchcell .sb .side{width:100%;justify-content:space-between}
+    td.matchcell .sb .side:last-child{flex-direction:row-reverse}
+    td.matchcell .sb .dash{display:none}
+    td.matchcell .g{font-size:24px;padding:2px 12px}
   }
 </style>
 </head>
@@ -120,10 +133,15 @@
   </div>
 
   <h2 class="sec">📅 כל המשחקים לפי תאריך</h2>
+  <p class="legend">
+    <span><b class="sw real"></b> תוצאת אמת (משחק שהסתיים)</span>
+    <span><b class="sw pred"></b> ניקוד חזוי (משחק עתידי)</span>
+    <span>הניקוד מופיע צמוד לכל נבחרת · המספר ליד הדגל = דירוג כוח</span>
+  </p>
   <table>
     <thead><tr>
-      <th>#</th><th>תאריך</th><th>שלב</th><th>משחק (עם דירוג כוח)</th>
-      <th>סטטוס</th><th>תוצאה</th><th>מועדפת</th><th>הערה</th>
+      <th>#</th><th>תאריך</th><th>שלב</th><th>תוצאת המשחק (חיזוי / אמת)</th>
+      <th>סטטוס</th><th>מועדפת</th><th>הערה</th>
     </tr></thead>
     <tbody id="tbody"></tbody>
   </table>
@@ -297,21 +315,32 @@ const tb=document.getElementById("tbody");
 let html="",lastDate="";
 ROWS.forEach(r=>{
   if(r.date!==lastDate){
-    html+='<tr class="datesep"><td colspan="8">📅 '+heMonth(r.date)+' 2026</td></tr>';
+    html+='<tr class="datesep"><td colspan="7">📅 '+heMonth(r.date)+' 2026</td></tr>';
     lastDate=r.date;
   }
   const isKO=!r.home;
-  const score = r.status==="played"
-    ? '<span class="score real">'+r.real+'</span>'
-    : (r.pred?'<span class="score pred">'+r.pred+'</span>':'<span class="tbd">—</span>');
   const ko = isKO?1:0;
+  const raw = r.status==="played" ? r.real : r.pred;
+  let board;
+  if(isKO){
+    board='<span class="tbd">יקבע — יקבע</span>';
+  } else {
+    const p = (raw && raw.indexOf("-")>-1) ? raw.split("-") : null;
+    const cls = r.status==="played" ? "real" : "pred";
+    const gh = p ? '<b class="g '+cls+'">'+p[0]+'</b>' : '<b class="g none">–</b>';
+    const ga = p ? '<b class="g '+cls+'">'+p[1]+'</b>' : '<b class="g none">–</b>';
+    board='<div class="sb">'+
+      '<span class="side">'+team(r.home)+gh+'</span>'+
+      '<span class="dash">:</span>'+
+      '<span class="side">'+ga+team(r.away)+'</span>'+
+    '</div>';
+  }
   html+='<tr data-status="'+r.status+'" data-ko="'+ko+'">'+
     '<td data-label="#">'+r.num+'</td>'+
     '<td data-label="תאריך">'+r.date.slice(5).replace("-","/")+'</td>'+
     '<td data-label="שלב">'+r.stage+'</td>'+
-    '<td class="matchcell" data-label="משחק">'+team(r.home)+(isKO?'':'<span class="vs">נגד</span>'+team(r.away))+'</td>'+
+    '<td class="matchcell" data-label="תוצאה">'+board+'</td>'+
     '<td data-label="סטטוס"><span class="pill '+r.status+'">'+(r.status==="played"?"הסתיים":"עתידי")+'</span></td>'+
-    '<td data-label="תוצאה">'+score+'</td>'+
     '<td data-label="מועדפת">'+favCell(r)+'</td>'+
     '<td class="note" data-label="הערה">'+(r.note||'')+'</td>'+
   '</tr>';
