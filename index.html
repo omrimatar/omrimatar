@@ -63,9 +63,36 @@
     padding:16px 20px;margin-top:26px;font-size:13px;color:var(--muted);line-height:1.8}
   .disc b{color:var(--txt)}
   footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center;line-height:1.7}
-  @media(max-width:640px){
-    thead th:nth-child(7),tbody td:nth-child(7){display:none}
-    header.top h1{font-size:24px}
+  /* ---- mobile: table -> cards ---- */
+  @media(max-width:680px){
+    .wrap{padding:16px 10px 50px}
+    header.top h1{font-size:22px}
+    header.top p{font-size:13px}
+    .cards{grid-template-columns:repeat(2,1fr);gap:10px}
+    .stat{padding:12px} .stat .num{font-size:22px}
+    .chip{padding:8px 13px;font-size:13px}
+
+    table{background:transparent;border-radius:0}
+    thead{display:none}
+    tbody,tr,td{display:block;width:100%}
+    tr.datesep{position:sticky;top:0;z-index:2;margin:18px 0 8px;border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,.4)}
+    tr.datesep td{display:block;border:none}
+    tbody tr:not(.datesep){
+      background:var(--card);border:1px solid var(--line);border-radius:14px;
+      margin:0 0 12px;padding:6px 14px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+    tbody tr:not(.datesep):hover{background:var(--card)}
+    tbody td{border:none;display:flex;justify-content:space-between;align-items:center;
+      gap:12px;padding:7px 0;text-align:left;border-top:1px solid rgba(40,51,90,.5)}
+    tbody td:first-child{border-top:none}
+    tbody td::before{content:attr(data-label);color:var(--muted);font-size:12px;
+      font-weight:700;flex-shrink:0}
+    /* match cell gets its own emphasized block */
+    td.matchcell{flex-direction:column;align-items:stretch;gap:6px;padding:10px 0}
+    td.matchcell::before{margin-bottom:2px}
+    td.matchcell .team{font-size:15px;font-weight:600}
+    td.matchcell .vs{display:block;text-align:center;margin:2px 0}
+    .score{font-size:18px}
   }
 </style>
 </head>
@@ -279,14 +306,14 @@ ROWS.forEach(r=>{
     : (r.pred?'<span class="score pred">'+r.pred+'</span>':'<span class="tbd">—</span>');
   const ko = isKO?1:0;
   html+='<tr data-status="'+r.status+'" data-ko="'+ko+'">'+
-    '<td>'+r.num+'</td>'+
-    '<td>'+r.date.slice(5).replace("-","/")+'</td>'+
-    '<td>'+r.stage+'</td>'+
-    '<td>'+team(r.home)+(isKO?'':'<span class="vs">נגד</span>'+team(r.away))+'</td>'+
-    '<td><span class="pill '+r.status+'">'+(r.status==="played"?"הסתיים":"עתידי")+'</span></td>'+
-    '<td>'+score+'</td>'+
-    '<td>'+favCell(r)+'</td>'+
-    '<td class="note">'+(r.note||'')+'</td>'+
+    '<td data-label="#">'+r.num+'</td>'+
+    '<td data-label="תאריך">'+r.date.slice(5).replace("-","/")+'</td>'+
+    '<td data-label="שלב">'+r.stage+'</td>'+
+    '<td class="matchcell" data-label="משחק">'+team(r.home)+(isKO?'':'<span class="vs">נגד</span>'+team(r.away))+'</td>'+
+    '<td data-label="סטטוס"><span class="pill '+r.status+'">'+(r.status==="played"?"הסתיים":"עתידי")+'</span></td>'+
+    '<td data-label="תוצאה">'+score+'</td>'+
+    '<td data-label="מועדפת">'+favCell(r)+'</td>'+
+    '<td class="note" data-label="הערה">'+(r.note||'')+'</td>'+
   '</tr>';
 });
 tb.innerHTML=html;
