@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מו"פ של התפתחות מיטיבה עבור נוער במצבי סיכון</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#080d28; --bg1:#0d1440; --bg2:#161e5c;
+  --ink:#f3f6ff; --ink-soft:#c4cdf0; --ink-mut:#8e98c8;
+  --cyan:#38e0e0; --blue:#5b8cff; --violet:#a78bfa; --emerald:#34d399; --amber:#fbbf24;
+  --glass:rgba(255,255,255,.055); --glass-2:rgba(255,255,255,.085);
+  --stroke:rgba(255,255,255,.14); --stroke-2:rgba(255,255,255,.22);
+  --blur:22px;
+  --disp:'Rubik','Heebo','Assistant','Segoe UI',Arial,sans-serif;
+  --body:'Heebo','Assistant','Segoe UI',Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--body); background:var(--bg0); color:var(--ink);
+  overflow:hidden; -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Ambient aurora background ---------- */
+.bg{position:fixed; inset:0; z-index:0; overflow:hidden;
+  background:
+    radial-gradient(1200px 900px at 85% -10%, rgba(91,140,255,.20), transparent 60%),
+    radial-gradient(1000px 800px at 10% 110%, rgba(167,139,250,.18), transparent 60%),
+    linear-gradient(155deg, var(--bg0) 0%, var(--bg1) 55%, var(--bg2) 100%);
+}
+.blob{position:absolute; border-radius:50%; filter:blur(70px); opacity:.55; mix-blend-mode:screen}
+.b1{width:520px;height:520px; background:radial-gradient(circle,#2bb7d6,transparent 70%); top:-120px; left:-80px; animation:drift1 26s ease-in-out infinite}
+.b2{width:600px;height:600px; background:radial-gradient(circle,#6d6bff,transparent 70%); bottom:-180px; right:-120px; animation:drift2 32s ease-in-out infinite}
+.b3{width:420px;height:420px; background:radial-gradient(circle,#34d399,transparent 70%); top:40%; right:30%; opacity:.30; animation:drift3 38s ease-in-out infinite}
+.b4{width:360px;height:360px; background:radial-gradient(circle,#fbbf24,transparent 70%); top:12%; right:8%; opacity:.20; animation:drift1 30s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,50px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,-40px)}}
+@keyframes drift3{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,-60px)}}
+/* faint grid */
+.bg::after{content:"";position:absolute;inset:0;opacity:.04;
+  background-image:linear-gradient(rgba(255,255,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.6) 1px,transparent 1px);
+  background-size:64px 64px; mask-image:radial-gradient(ellipse at center,black,transparent 85%)}
+
+/* ---------- Deck / slides ---------- */
+.deck{position:relative; z-index:2; height:100vh; width:100vw}
+.slide{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(28px,5vw,90px); opacity:0; visibility:hidden; transform:translateY(26px) scale(.99);
+  transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),visibility .6s; pointer-events:none}
+.slide.active{opacity:1; visibility:visible; transform:none; pointer-events:auto}
+.slide.active .anim{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.slide.active .anim:nth-child(2){animation-delay:.07s}
+.slide.active .anim:nth-child(3){animation-delay:.14s}
+.slide.active .anim:nth-child(4){animation-delay:.21s}
+.slide.active .anim:nth-child(5){animation-delay:.28s}
+.slide.active .anim:nth-child(6){animation-delay:.35s}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.wrap{width:100%; max-width:1180px; margin:0 auto}
+
+/* ---------- Typography & shared ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:.5em; font-family:var(--disp); font-weight:600;
+  font-size:clamp(11px,1.05vw,14px); letter-spacing:.14em; color:var(--cyan);
+  text-transform:uppercase; padding:.5em 1em; border:1px solid var(--stroke);
+  border-radius:999px; background:var(--glass); backdrop-filter:blur(10px)}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+h1.title{font-family:var(--disp); font-weight:800; line-height:1.04; letter-spacing:-.01em;
+  font-size:clamp(34px,6vw,80px); margin:.32em 0 .26em}
+h2.head{font-family:var(--disp); font-weight:800; line-height:1.06; letter-spacing:-.01em;
+  font-size:clamp(28px,4.4vw,56px)}
+.kicker{font-family:var(--disp); font-weight:600; color:var(--ink-soft);
+  font-size:clamp(14px,1.6vw,21px); margin-top:.5em}
+.lead{color:var(--ink-soft); font-size:clamp(15px,1.55vw,21px); line-height:1.55; max-width:60ch}
+.grad{background:linear-gradient(100deg,var(--cyan),var(--blue) 45%,var(--violet));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.amberword{color:var(--amber)}
+
+/* slide header (top eyebrow + rule) */
+.shead{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;
+  border-bottom:1px solid var(--stroke); padding-bottom:18px; margin-bottom:clamp(20px,3vw,40px)}
+.shead .t h2{font-size:clamp(24px,3.4vw,44px)}
+.shead .t .sub{color:var(--ink-mut);font-size:clamp(13px,1.35vw,17px);margin-top:.35em}
+.shead .num{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4.4vw,60px);
+  color:transparent;-webkit-text-stroke:1.4px rgba(255,255,255,.32);line-height:1;white-space:nowrap}
+
+/* glass card */
+.glass{background:var(--glass); border:1px solid var(--stroke); border-radius:20px;
+  backdrop-filter:blur(var(--blur)) saturate(140%); -webkit-backdrop-filter:blur(var(--blur)) saturate(140%);
+  box-shadow:0 18px 50px -22px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.16);
+  position:relative; overflow:hidden}
+.glass::before{content:"";position:absolute;top:0;right:0;width:46%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5))}
+
+/* grids */
+.grid{display:grid;gap:clamp(14px,1.6vw,22px)}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+
+/* card content */
+.card{padding:clamp(18px,2vw,28px)}
+.card .h{font-family:var(--disp);font-weight:700;font-size:clamp(16px,1.7vw,22px);margin-bottom:.5em;display:flex;align-items:center;gap:.55em}
+.card p{color:var(--ink-soft);font-size:clamp(13px,1.35vw,16.5px);line-height:1.55}
+.tag{position:absolute;inset-inline-start:0;top:18px;bottom:18px;width:4px;border-radius:4px}
+.t-cyan{background:linear-gradient(var(--cyan),#1b9fb8)} .t-blue{background:linear-gradient(var(--blue),#2f5fd0)}
+.t-violet{background:linear-gradient(var(--violet),#7c5cf0)} .t-emerald{background:linear-gradient(var(--emerald),#159e6f)}
+.t-amber{background:linear-gradient(var(--amber),#d99413)}
+.chip{display:inline-grid;place-items:center;width:2em;height:2em;border-radius:9px;font-family:var(--disp);
+  font-weight:800;font-size:clamp(13px,1.4vw,16px);color:#08102e}
+.c-cyan{background:var(--cyan)} .c-blue{background:var(--blue)} .c-violet{background:var(--violet)}
+.c-emerald{background:var(--emerald)} .c-amber{background:var(--amber)}
+
+/* insight callout */
+.insight{display:flex;gap:14px;align-items:flex-start;padding:clamp(16px,1.8vw,22px);border-radius:16px;
+  background:linear-gradient(100deg,rgba(251,191,36,.14),rgba(251,191,36,.04));
+  border:1px solid rgba(251,191,36,.32); backdrop-filter:blur(10px)}
+.insight .ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(251,191,36,.2);font-size:18px}
+.insight b{color:var(--amber);font-family:var(--disp)}
+.insight p{color:var(--ink-soft);font-size:clamp(13px,1.35vw,16px);line-height:1.5}
+
+/* metric */
+.metric{font-family:var(--disp);font-weight:800;line-height:1;
+  font-size:clamp(34px,4.6vw,60px)}
+.metric .u{font-size:.42em;font-weight:600;color:var(--ink-mut);margin-inline-start:.2em}
+.mlabel{color:var(--ink-mut);font-size:clamp(12px,1.25vw,15px);margin-top:.5em}
+
+/* ---------- Slide 1 hero ---------- */
+.hero{align-items:flex-start}
+.partners{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.pill{font-family:var(--disp);font-weight:600;font-size:clamp(12px,1.2vw,15px);
+  padding:.55em 1.05em;border-radius:999px;background:var(--glass-2);border:1px solid var(--stroke);
+  backdrop-filter:blur(10px);color:var(--ink-soft)}
+.metaline{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(20px,3vw,34px);
+  color:var(--ink-mut);font-size:clamp(13px,1.3vw,16px)}
+.metaline .sep{width:5px;height:5px;border-radius:50%;background:var(--ink-mut)}
+
+/* ---------- parallel-lines signature (slide 2) ---------- */
+.bridge{position:relative;height:clamp(120px,16vw,190px);margin:6px 0 4px}
+.line{position:absolute;left:0;right:0;height:3px;border-radius:3px}
+.line.l-top{top:24%;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.line.l-bot{bottom:24%;background:linear-gradient(90deg,transparent,var(--violet),transparent)}
+.line .lab{position:absolute;top:-1.9em;font-family:var(--disp);font-weight:700;font-size:clamp(13px,1.4vw,18px)}
+.line.l-top .lab{color:var(--cyan)} .line.l-bot .lab{bottom:-1.9em;top:auto;color:var(--violet)}
+.bridge .span{position:absolute;left:42%;right:42%;top:24%;bottom:24%;
+  border-inline:2px dashed rgba(255,255,255,.35)}
+.bridge .knot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:clamp(60px,7vw,90px);height:clamp(60px,7vw,90px);border-radius:18px;display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(56,224,224,.25),rgba(167,139,250,.25));
+  border:1px solid var(--stroke-2);backdrop-filter:blur(8px);text-align:center;
+  font-family:var(--disp);font-weight:800;font-size:clamp(11px,1.2vw,15px);box-shadow:0 0 40px rgba(91,140,255,.4)}
+
+/* funnel (slide 5) */
+.funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1vw,14px);align-items:stretch}
+.fstep{position:relative;border-radius:16px;padding:clamp(14px,1.5vw,20px) clamp(10px,1.1vw,16px);
+  background:var(--glass);border:1px solid var(--stroke);backdrop-filter:blur(12px);text-align:center;
+  display:flex;flex-direction:column;gap:.5em}
+.fstep .st{font-family:var(--disp);font-weight:600;font-size:clamp(11px,1.1vw,13px);color:var(--ink-mut)}
+.fstep .ti{font-family:var(--disp);font-weight:800;font-size:clamp(14px,1.55vw,20px)}
+.fstep p{color:var(--ink-soft);font-size:clamp(11px,1.15vw,14px);line-height:1.45}
+.fstep .ring{width:34px;height:34px;margin:0 auto;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--disp);font-weight:800;color:#08102e}
+.fstep:nth-child(1){transform:translateY(0)}
+.fstep .ar{position:absolute;left:-11px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--ink-mut);z-index:3}
+.fstep:last-child .ar{display:none}
+
+/* timeline table (slide 10) */
+.tl{width:100%;border-collapse:separate;border-spacing:0 8px}
+.tl th{font-family:var(--disp);font-weight:700;text-align:right;color:var(--ink);
+  font-size:clamp(12px,1.3vw,16px);padding:12px 18px;background:rgba(91,140,255,.22);
+  border-block:1px solid var(--stroke)}
+.tl th:first-child{border-start-start-radius:12px;border-end-start-radius:12px}
+.tl th:last-child{border-start-end-radius:12px;border-end-end-radius:12px}
+.tl td{padding:12px 18px;font-size:clamp(12px,1.25vw,15.5px);color:var(--ink-soft);
+  background:var(--glass);border-block:1px solid rgba(255,255,255,.07);vertical-align:top;line-height:1.45}
+.tl td:first-child{border-start-start-radius:12px;border-end-start-radius:12px;font-family:var(--disp);font-weight:700;color:var(--ink);white-space:nowrap}
+.tl td:last-child{border-start-end-radius:12px;border-end-end-radius:12px}
+.tl .mile{font-family:var(--disp);font-weight:700;color:var(--cyan)}
+.tl tr.key td{background:rgba(56,224,224,.10)}
+
+/* bullets list */
+.blist{list-style:none;display:flex;flex-direction:column;gap:12px}
+.blist li{display:flex;gap:12px;align-items:flex-start;color:var(--ink-soft);
+  font-size:clamp(13px,1.35vw,16.5px);line-height:1.5}
+.blist li .mk{flex:none;width:1.6em;height:1.6em;border-radius:8px;display:grid;place-items:center;
+  font-family:var(--disp);font-weight:800;font-size:.8em;color:#08102e;margin-top:.05em}
+.blist li b{color:var(--ink);font-family:var(--disp);font-weight:600}
+
+/* ---------- chrome: progress, nav, counter, notes ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;z-index:30;
+  background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));
+  box-shadow:0 0 14px rgba(91,140,255,.7);transition:width .5s ease;width:0}
+.brandmark{position:fixed;top:18px;right:clamp(20px,4vw,48px);z-index:20;display:flex;align-items:center;gap:10px;
+  font-family:var(--disp);font-weight:700;font-size:13px;color:var(--ink-soft);opacity:.85}
+.brandmark .gem{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--cyan),var(--violet));
+  box-shadow:0 0 16px rgba(91,140,255,.6)}
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:25;display:flex;align-items:center;gap:14px;
+  padding:9px 14px;border-radius:999px;background:var(--glass-2);border:1px solid var(--stroke);backdrop-filter:blur(14px)}
+.nav button{all:unset;cursor:pointer;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  color:var(--ink-soft);font-size:18px;transition:.2s;border:1px solid transparent}
+.nav button:hover{background:var(--glass);border-color:var(--stroke);color:var(--ink)}
+.nav .count{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--ink-soft);min-width:56px;text-align:center}
+.dots{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:25;display:flex;flex-direction:column;gap:9px}
+.dots i{display:block;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22);cursor:pointer;transition:.25s}
+.dots i.on{background:var(--cyan);box-shadow:0 0 10px var(--cyan);transform:scale(1.25)}
+.dots i:hover{background:var(--ink-soft)}
+
+/* presenter notes */
+.notesbtn{position:fixed;bottom:22px;right:clamp(20px,4vw,48px);z-index:25;all:unset;cursor:pointer;
+  display:flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:600;font-size:13px;color:var(--ink-soft);
+  padding:9px 15px;border-radius:999px;background:var(--glass-2);border:1px solid var(--stroke);backdrop-filter:blur(14px);transition:.2s}
+.notesbtn:hover{color:var(--ink);border-color:var(--stroke-2)}
+.notesbtn .k{font-size:11px;opacity:.7;border:1px solid var(--stroke);border-radius:5px;padding:1px 6px}
+.notes{position:fixed;left:0;right:0;bottom:0;z-index:40;transform:translateY(105%);transition:transform .45s cubic-bezier(.2,.7,.2,1);
+  padding:0 clamp(20px,4vw,48px) 22px}
+.notes.open{transform:none}
+.notes .inner{max-width:1100px;margin:0 auto;padding:22px 26px;border-radius:20px 20px 0 0;
+  background:rgba(12,18,52,.82);border:1px solid var(--stroke);border-bottom:none;backdrop-filter:blur(26px);
+  box-shadow:0 -20px 60px -20px rgba(0,0,0,.7)}
+.notes .nh{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:700;color:var(--amber);
+  font-size:14px;letter-spacing:.04em;margin-bottom:10px}
+.notes .nbody{color:var(--ink-soft);font-size:clamp(13px,1.4vw,16px);line-height:1.6}
+.notes .nbody b{color:var(--ink);font-family:var(--disp)}
+.notes .close{margin-inline-start:auto;all:unset;cursor:pointer;color:var(--ink-mut);font-size:20px}
+
+.hint{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);z-index:24;color:var(--ink-mut);
+  font-size:12px;font-family:var(--disp);opacity:.8;transition:opacity .6s;text-align:center}
+
+@media (max-width:760px){
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .funnel{grid-template-columns:1fr 1fr}
+  .shead .num{display:none}
+  .dots{display:none}
+  .tl{font-size:11px} .tl td,.tl th{padding:8px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .slide{transition:opacity .25s}
+}
+</style>
+</head>
+<body>
+<div class="bg"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span></div>
+<div class="progress" id="prog"></div>
+<div class="brandmark"><span class="gem"></span><span>מו"פ נוער בסיכון · עדכון סטטוס</span></div>
+
+<div class="deck" id="deck">
+
+  <!-- ============ SLIDE 1 — HERO ============ -->
+  <section class="slide hero" data-notes="<b>פתיחה ליו&quot;ר:</b> זו תוכנית מו&quot;פ ראשונה מסוגה — לא עוד תוכנית התערבות נקודתית, אלא הקמת <b>תשתית ידע מתכללת</b> שמגשרת בין מחקר אקדמי לבין השדה הטיפולי-חינוכי. המסר המרכזי שאיתו פותחים: הפוטנציאל הוא ביצירת ערך שאף צד לא יכול לייצר לבד.">
+    <div class="wrap">
+      <span class="eyebrow anim"><span class="dot"></span>מסמך מו"פ יישומי · עדכון סטטוס</span>
+      <h1 class="title anim">מו"פ של <span class="grad">התפתחות מיטיבה</span><br>עבור נוער במצבי סיכון</h1>
+      <p class="lead anim" style="font-size:clamp(16px,1.9vw,24px);color:var(--ink-soft)">מודל עבודה לפיתוח פרוטוקולים יישומיים מבוססי נתונים והתנסות בשדה</p>
+      <div class="partners anim" style="margin-top:clamp(22px,3vw,34px)">
+        <span class="pill">ג'וינט אשלים</span>
+        <span class="pill">IVN</span>
+        <span class="pill">בליווי משרד החינוך</span>
+        <span class="pill">בליווי משרד הרווחה</span>
+      </div>
+      <div class="metaline anim">
+        <span>יוני 2026</span><span class="sep"></span>
+        <span>תוכנית דו-שנתית · 2026–2028</span><span class="sep"></span>
+        <span style="color:var(--cyan)">מסמך לעיון יו"ר</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 2 — BACKGROUND / GAP ============ -->
+  <section class="slide" data-notes="<b>נקודת הדיבור המרכזית:</b> היום הידע והשטח חיים בשני עולמות מקבילים שכמעט ולא נפגשים — מחקר יקר-ערך נשאר במגירה, והשטח מאלתר פתרונות מצוינים אך ללא תשתית ראייתית. <b>כאן בדיוק הפוטנציאל:</b> חיבור שמייצר ערך חדש לגמרי. נציין שמשרדי החינוך והרווחה כבר מלווים כגופים מתווי מדיניות — לגיטימציה ממסדית מובנית בתוכנית.">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">רקע ואתגרי השדה</h2><div class="sub">הפער המבני בין מחקר אקדמי לפרקטיקה בשטח</div></div><div class="num">01</div></div>
+
+      <div class="bridge anim" aria-hidden="true">
+        <div class="line l-top"><span class="lab" style="right:6%">האקדמיה · ידע ומחקר</span></div>
+        <div class="line l-bot"><span class="lab" style="right:6%">השדה · מענים ופרקטיקה</span></div>
+        <div class="span"></div>
+        <div class="knot">מרכז<br>המו"פ</div>
+      </div>
+
+      <div class="grid g2 anim" style="margin-top:8px">
+        <div class="glass card"><span class="tag t-cyan"></span>
+          <div class="h">הקווים המקבילים של האקדמיה והשטח</div>
+          <p>חוקרים מפיקים ידע תיאורטי ואמפירי יקר ערך, אך הוא מתקשה לחלחל לפרקטיקה היומיומית. מנגד, אנשי השטח מפתחים מענים מקומיים מצוינים — אך אלו פועלים לרוב ללא תשתית ראייתית מבוססת ומובנית.</p>
+        </div>
+        <div class="glass card"><span class="tag t-violet"></span>
+          <div class="h">חסמי הכניסה של עולם החדשנות</div>
+          <p>קיימת מוטיבציה ורצון עז בקרב אנשי טכנולוגיה וחדשנות לקחת חלק בפתרון אתגרים חברתיים. עם זאת, הם נתקלים בחסמי כניסה משמעותיים ובחוסר היכרות עם השפה המקצועית והמורכבות הייחודית של שדה הנוער בסיכון.</p>
+        </div>
+      </div>
+
+      <div class="insight anim" style="margin-top:clamp(16px,2vw,22px)">
+        <div class="ic">💡</div>
+        <p><b>הפתרון המשותף:</b> חיבור של IVN וג'וינט אשלים, בליווי משרדי החינוך והרווחה כגופים מתווי מדיניות, להקמת <b>מרכז מו"פ ייעודי</b> שמגשר על פערים אלו.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 3 — GOAL & DELIVERABLES ============ -->
+  <section class="slide" data-notes="<b>המהות בכלכלת מילים:</b> 5 פרוטוקולים × 4 תוצרים = <b>20 נכסי ידע מבוססי-ראיות</b>. כל פרוטוקול הוא מוצר שלם — מתשתית תיאורטית, דרך התערבות מבוססת-ראיות ופיילוט נמדד, ועד מדריך הטמעה (Playbook) שהשטח יכול להפעיל מחר בבוקר. זה מה שהופך מחקר ל&quot;מוצר מדף&quot; יישומי.">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">מטרת התוכנית והתוצרים</h2><div class="sub">הבאת פריצת דרך בשדה באמצעות מודל עבודה חדשני ומבוסס מחקר</div></div><div class="num">02</div></div>
+
+      <div class="glass card anim" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(16px,2vw,24px)">
+        <div>
+          <div style="font-family:var(--disp);font-weight:700;font-size:clamp(15px,1.7vw,21px);color:var(--cyan)">היעד האופרטיבי</div>
+          <div style="font-family:var(--disp);font-weight:800;font-size:clamp(18px,2.3vw,30px);margin-top:.2em">פיתוח 5 פרוטוקולים יישומיים לפעולה</div>
+        </div>
+        <div style="display:flex;gap:clamp(20px,3vw,46px)">
+          <div><div class="metric grad">5</div><div class="mlabel">פרוטוקולים</div></div>
+          <div><div class="metric grad">4</div><div class="mlabel">תוצרים לכל פרוטוקול</div></div>
+          <div><div class="metric grad">20</div><div class="mlabel">נכסי ידע בסה"כ</div></div>
+        </div>
+      </div>
+
+      <div class="kicker anim" style="margin-bottom:14px">כל פרוטוקול נבנה על 4 עמודי תווך:</div>
+      <div class="grid g4 anim">
+        <div class="glass card"><span class="tag t-emerald"></span><div class="h"><span class="chip c-emerald">1</span></div>
+          <div style="font-family:var(--disp);font-weight:700;font-size:clamp(14px,1.4vw,18px);margin:.2em 0 .4em">דו"ח תשתית תיאורטית ואמפירית</div>
+          <p>סקירת ספרות עדכנית לצד איסוף וניתוח נתונים מהשטח, במתודולוגיית כלי מחקר מעורבים.</p></div>
+        <div class="glass card"><span class="tag t-amber"></span><div class="h"><span class="chip c-amber">2</span></div>
+          <div style="font-family:var(--disp);font-weight:700;font-size:clamp(14px,1.4vw,18px);margin:.2em 0 .4em">פרוטוקול התערבות מבוסס-ראיות</div>
+          <p>מודל ההתערבות הראשוני, מותאם בצורה מדויקת לצרכי השטח ומעוגן בספרות המקצועית.</p></div>
+        <div class="glass card"><span class="tag t-blue"></span><div class="h"><span class="chip c-blue">3</span></div>
+          <div style="font-family:var(--disp);font-weight:700;font-size:clamp(14px,1.4vw,18px);margin:.2em 0 .4em">דו"ח הערכת פיילוט (MVP)</div>
+          <p>תיעוד ההתנסות הראשונית ב"מעבדות החיות", ניתוח ממצאים בזמן אמת והפקת לקחים.</p></div>
+        <div class="glass card"><span class="tag t-violet"></span><div class="h"><span class="chip c-violet">4</span></div>
+          <div style="font-family:var(--disp);font-weight:700;font-size:clamp(14px,1.4vw,18px);margin:.2em 0 .4em">מדריך יישום והטמעה (Playbook)</div>
+          <p>התוצר הסופי והמזוקק: מפת דרכים, מסקנות אופרטיביות והמלצות קונקרטיות להטמעה רחבה.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 4 — POPULATIONS & PRINCIPLES ============ -->
+  <section class="slide" data-notes="<b>כאן נמצאת החדשנות שצריך להבליט:</b> ה-<b>Super Teams</b> הרב-מגזריים וה-<b>Living Lab</b>. זה לא מחקר במגירה — אלא פיתוח תוך כדי התנסות אמיתית בשדה, באיטרציות מהירות. שווה לחבר ליו&quot;ר: מי שמרוויח בקצה הם בני הנוער (רמת הפרט) ואנשי המקצוע שמלווים אותם (רמת השדה), שהיום פועלים ללא פרוטוקול מובנה.">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">אוכלוסיות יעד ועקרונות פעולה</h2><div class="sub">מיקוד בשדה ועבודה לפי עקרונות מו"פ קשיחים</div></div><div class="num">03</div></div>
+
+      <div class="grid g2 anim" style="align-items:start;gap:clamp(16px,2.4vw,30px)">
+        <div>
+          <div class="kicker" style="color:var(--cyan);margin-bottom:12px">אוכלוסיות היעד</div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="glass card"><span class="tag t-cyan"></span>
+              <div class="h">ברמת הפרט</div>
+              <p>נערים ונערות במסגרות רווחה ו/או מסגרות חינוכיות, בגילאי חטיבת ביניים ותיכון.</p></div>
+            <div class="glass card"><span class="tag t-blue"></span>
+              <div class="h">ברמת השדה</div>
+              <p>עובדים, מדריכים ומנהלים במסגרות נוער בסיכון (קידום נוער, מפתנים, הוסטלים, מרכזים קהילתיים) הפועלים כיום ללא פרוטוקול עבודה מובנה ומבוסס ראיות.</p></div>
+          </div>
+        </div>
+        <div>
+          <div class="kicker" style="color:var(--violet);margin-bottom:12px">עקרונות הפעולה של המודל</div>
+          <ul class="blist">
+            <li><span class="mk c-emerald">1</span><span><b>ישימות מבוססת מחקר:</b> עיגון כלל הפעילות והמענים הטיפוליים-חינוכיים בתשתיות אמפיריות מוכחות.</span></li>
+            <li><span class="mk c-amber">2</span><span><b>צוותי משימה רב-מגזריים (Super Teams):</b> שילוב מובנה ואינטנסיבי של חוקרים מהאקדמיה, אנשי טכנולוגיה מתקדמת ואנשי שטח מקצועיים.</span></li>
+            <li><span class="mk c-violet">3</span><span><b>מעבדה חיה (Living Lab) ותהליך איטרטיבי:</b> מרחבי פעולה קיימים שבהם בני הנוער והצוותים המלווים שותפים אקטיביים בתהליך המו"פ, הלמידה וההטמעה בזמן אמת.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 5 — 5-STAGE MODEL ============ -->
+  <section class="slide" data-notes="<b>תמונת-העל של איך זה עובד:</b> המודל בנוי כמשפך שמצמצם סיכון בכל שלב — מחשיפה רחבה (קול קורא), דרך שידוך מדויק (ספרינטים), להתנסות עמוקה בשדה, ועד אימפקט והרחבה (Scale). זה הסלייד שאפשר לעצור עליו ולהראות ליו&quot;ר את כל המסע במבט אחד.">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">מודל הפעולה המחומש</h2><div class="sub">חמישה שלבים מהשלב המקדים ועד לאימפקט הרחב</div></div><div class="num">04</div></div>
+
+      <div class="funnel anim">
+        <div class="fstep"><span class="ar">‹</span><div class="ring c-cyan">1</div><div class="st">שלב 1</div><div class="ti" style="color:var(--cyan)">הכנה וחשיפה</div><p>בחירת תחומים מרכזיים, פרסום קול קורא לגופים ותהליך מיון קפדני.</p></div>
+        <div class="fstep"><span class="ar">‹</span><div class="ring c-blue">2</div><div class="st">שלב 2</div><div class="ti" style="color:var(--blue)">חיבורים ופיתוח</div><p>ציוות ובחירת Super Teams, איתור שדות התנסות ואישור יציאה לדרך.</p></div>
+        <div class="fstep"><span class="ar">‹</span><div class="ring c-violet">3</div><div class="st">שלב 3</div><div class="ti" style="color:var(--violet)">התנסות ובנייה</div><p>ליווי פנים-צוותי, הכשרות ממוקדות, מפגשי שיא וביקורי ועדת היגוי.</p></div>
+        <div class="fstep"><span class="ar">‹</span><div class="ring c-emerald">4</div><div class="st">שלב 4</div><div class="ti" style="color:var(--emerald)">חשיפת תוצרים</div><p>כנס סיום חגיגי, הצגת 5 פרוטוקולים, מדריך הטמעה ומפת דרכים.</p></div>
+        <div class="fstep"><div class="ring c-amber">5</div><div class="st">שלב 5</div><div class="ti" style="color:var(--amber)">אימפקט ו-SCALE</div><p>הרחבת המוצר, הטמעה, הפצה, העמקה והשפעה על מדיניות.</p></div>
+      </div>
+
+      <div class="insight anim" style="margin-top:clamp(18px,2.4vw,28px)">
+        <div class="ic">🎯</div>
+        <p>כל שלב הוא <b>שער סינון</b> שמצמצם את הסיכון: מתחילים בחשיפה רחבה, ממקדים לשידוך מדויק, מתנסים בשדה אמיתי — ורק מה שמוכיח את עצמו ממשיך ל-Scale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 6 — SCOPING & SCOUTING ============ -->
+  <section class="slide" data-notes="<b>איפה אנחנו עכשיו במסע (סטטוס):</b> זהו השלב המקדים. דגש: הוא מובל ע&quot;י מומחה סקופינג עם Brief קשיח — לא &quot;מיפוי כללי&quot; אלא איתור ממוקד של 8–10 פרקטישנרים מובילים ושדות פעולה רלוונטיים. התוצר מכין את הקרקע ל&quot;שידוך&quot; בשלב הבא.">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">הלכה למעשה: איתור ומיפוי אקטיבי</h2><div class="sub">Scoping &amp; Scouting · אפיון הצרכים ויצירת תשתית לחיבורים המקצועיים</div></div><div class="num">05</div></div>
+
+      <div class="grid g2 anim" style="align-items:start">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="insight" style="background:linear-gradient(100deg,rgba(91,140,255,.16),rgba(91,140,255,.04));border-color:rgba(91,140,255,.34)">
+            <div class="ic" style="background:rgba(91,140,255,.22)">🧭</div>
+            <p><b style="color:var(--blue)">הובלה מקצועית:</b> השלב מובל על ידי מומחה סקופינג מטעם הארגון, הפועל על פי הגדרת משימה (Brief) קשיחה וברורה.</p>
+          </div>
+          <ul class="blist">
+            <li><span class="mk c-cyan">›</span><span>איתור <b>8–10 אנשי מעשה וחוקרים</b> בעלי דיסציפלינות חדשניות באקדמיה, במכוני מחקר או ביזמות חברתית.</span></li>
+            <li><span class="mk c-cyan">›</span><span>ביצוע תהליך אבחון מהיר בתוך "הזירות האפשריות" (מסגרות הנוער בסיכון), בשותפות עם מנהלת הפרויקט.</span></li>
+            <li><span class="mk c-cyan">›</span><span>מיפוי המוכנות התפעולית, הצרכים המדויקים והמגבלות הקיימות בשטח.</span></li>
+          </ul>
+        </div>
+        <div class="glass card"><span class="tag t-cyan"></span>
+          <div class="h">תוצרי שלב המיפוי</div>
+          <div style="display:flex;flex-direction:column;gap:16px;margin-top:6px">
+            <div><div style="font-family:var(--disp);font-weight:700;color:var(--cyan)">מיפוי של 5–10 שדות פעולה</div>
+              <p style="margin-top:.3em">פוטנציאליים לניסוי הפרוטוקולים, הגדרת הצרכים שלהם ובחינת רמת העניין המקצועי.</p></div>
+            <div style="height:1px;background:var(--stroke)"></div>
+            <div><div style="font-family:var(--disp);font-weight:700;color:var(--cyan)">מפת חלופות ממוקדת</div>
+              <p style="margin-top:.3em">המציגה את הפערים בשטח לצד פרופיל של 10–15 אנשי מקצוע וידע המתאימים לעבודה יישומית מהירה.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 7 — SPRINTS & MATCHMAKING ============ -->
+  <section class="slide" data-notes="<b>הלב של החדשנות — מנגנון ה&quot;שידוך&quot;:</b> ספרינט קצר ואינטנסיבי שבו בוחנים &quot;בלייב&quot; כימיה מקצועית והיתכנות מול אילוצי תקציב ושטח — <b>לפני</b> ההתחייבות התקציבית הגדולה. זה מנגנון חכם להקטנת סיכון השקעה: רק 4 צוותים מצטיינים עוברים הלאה עם תקציב מאושר.">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">הספרינטים המקצועיים ויצירת ה"שידוך"</h2><div class="sub">מניעת פערים ביישום ובדיקת היתכנות המוצר והשותפות בזמן קצר</div></div><div class="num">06</div></div>
+
+      <div class="grid g3 anim" style="align-items:start">
+        <div class="glass card"><span class="tag t-blue"></span>
+          <div class="h">פורמט הספרינט המעשי</div>
+          <p>מפגשי עבודה מרוכזים וקצובים בזמן (יומיים או שני חצאי ימים) המפגישים בצורה בלתי אמצעית בין אנשי המקצוע של הזירות (השטח) לבין החוקרים והיזמים שנבחרו (Practitioners).</p></div>
+        <div class="glass card"><span class="tag t-cyan"></span>
+          <div class="h">מטרת העל של הספרינט</div>
+          <p>פיצוח משותף של בעיית השורש. בוחנים "בלייב" את הכימיה המקצועית, מתקפים את היתכנות המודל התיאורטי אל מול אילוצי התקציב והשטח הממשיים, ומייצרים מתווה ראשוני לפתרון.</p></div>
+        <div class="glass card"><span class="tag t-emerald"></span>
+          <div class="h">מנגנון השידוך והתוצרים</div>
+          <p>על בסיס תוצרי הספרינט והסינרגיה שהוכחה, הארגון מבצע את השידוך הסופי והמדויק ביותר בין הפרקטישנר לזירה המתאימה לו.</p></div>
+      </div>
+
+      <div class="grid g2 anim" style="margin-top:clamp(16px,2vw,22px)">
+        <div class="insight" style="background:linear-gradient(100deg,rgba(52,211,153,.14),rgba(52,211,153,.03));border-color:rgba(52,211,153,.32)">
+          <div class="ic" style="background:rgba(52,211,153,.2)">✅</div>
+          <p><b style="color:var(--emerald)">תוצר אופרטיבי:</b> בחירת <b>4 צוותים מצטיינים</b> שייגשו באופן מיידי לכתיבת תוכניות עבודה מפורטות.</p>
+        </div>
+        <div class="insight" style="background:linear-gradient(100deg,rgba(52,211,153,.14),rgba(52,211,153,.03));border-color:rgba(52,211,153,.32)">
+          <div class="ic" style="background:rgba(52,211,153,.2)">💰</div>
+          <p><b style="color:var(--emerald)">אישור תקציבי:</b> יום הצגה משותף וקבלת אישור לתקציב מלא עבור המיזמים שתוכניות העבודה שלהם אושרו רשמית.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 8 — FIELD EXPERIMENTATION ============ -->
+  <section class="slide" data-notes="<b>כאן קורה הפיתוח האמיתי:</b> כשנה של עבודה צמודה בשדה, עם <b>תקצוב מוגן</b> שסוכם מראש בספרינט (יתרון משמעותי לניהול סיכונים), מעטפת הכשרות ובנק יועצים. התוצר בקצה: פרוטוקול יישומי + סילבוס קורס הכשרה — מוכנים לשכפול רחב. אפשר לציין שזה ~8 חודשי עבודה נטו (בנטרול חופשות וחגים במסגרות).">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">שלב ההתנסות והבנייה בשטח</h2><div class="sub">כ-8 חודשי עבודה נטו · מעבר מרעיון ראשוני לפרוטוקול מובנה ותוכנית הכשרה שלמה</div></div><div class="num">07</div></div>
+
+      <div class="grid g2 anim" style="align-items:start;gap:clamp(16px,2.2vw,28px)">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="glass card"><span class="tag t-blue"></span>
+            <div class="h">עבודה מבוססת הוכחה ותקצוב מוגן</div>
+            <p>הפרקטישנר הנבחר מקבל את המענק ונכנס לעבודה צמודה של כשנה באותה הזירה — כשהוא מוגן ע"י מגבלות התקציב והמשאבים שסוכמו מראש בספרינט המשותף. בתחילת התהליך ייבחנו בקשות לתקצוב ראשוני וסיוע לוגיסטי.</p></div>
+          <div class="glass card"><span class="tag t-emerald"></span>
+            <div class="h">התוצר הסופי המרכזי</div>
+            <p>הוצאת פרוטוקול יישומי מובנה וסילבוס קורס הכשרה, <b style="color:var(--emerald)">המוכנים לשכפול רחב (Scale)</b> עבור כלל העובדים בשדה הנוער בסיכון.</p></div>
+        </div>
+        <div class="glass card"><span class="tag t-violet"></span>
+          <div class="h">בניית מעטפת למרחב דינמי</div>
+          <ul class="blist" style="margin-top:8px">
+            <li><span class="mk c-violet">א</span><span><b>איתור צרכים והתאמה:</b> התאמת מעטפת ליווי של הכשרות רלוונטיות ומקצועיות לצוותים.</span></li>
+            <li><span class="mk c-violet">ב</span><span><b>מפגשי שיא רוחביים:</b> הפקה וביצוע של מפגשי שיא משותפים לכלל הצוותים בתוכנית.</span></li>
+            <li><span class="mk c-violet">ג</span><span><b>"בנק יועצים":</b> ניהול וליווי שוטף של מאגר יועצים מומחים לטובת השותפויות.</span></li>
+            <li><span class="mk c-violet">ד</span><span><b>ועדת היגוי:</b> תכנון וליווי ביקורי ועדת ההיגוי בשדות המחקר, הצגת תוצרים ודיון מקצועי.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 9 — PATHS AFTER PROTOCOL ============ -->
+  <section class="slide" data-notes="<b>כאן נמצא הפוטנציאל למינוף לאומי — להבליט ליו&quot;ר:</b> אחרי הפיילוט נפתחים 5 נתיבי הרחבה, והבולט שבהם הוא <b>השפעה ישירה על מדיניות</b> משרדי הממשלה. כלומר התוצר לא נעצר בשדה אחד — הוא יכול לעצב הכשרות, להפוך לדיגיטלי, ולהזין שינוי מדיניות רוחבי. זה ה-upside הגדול של ההשקעה.">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">נתיבים אפשריים לאחר פיתוח הפרוטוקול</h2><div class="sub">מינוף התוצרים ליצירת אימפקט רחב ובר-קיימא בשדה החברתי</div></div><div class="num">08</div></div>
+
+      <div class="grid g3 anim">
+        <div class="glass card"><span class="tag t-emerald"></span><div class="h"><span style="font-size:20px">📈</span> הרחבת המוצר (Scale)</div>
+          <p>השקעה נוספת והתקשרות עם גופים מקצועיים לצורך פיתוח מוצר מלא והגעה לפריסה רחבה בשטח.</p></div>
+        <div class="glass card"><span class="tag t-cyan"></span><div class="h"><span style="font-size:20px">🎓</span> פיתוח הכשרה והדרכה</div>
+          <p>תרגום הפרוטוקול היישומי למערכי הכשרה מובנים ע"י יחידת פיתוח ההכשרות, לצוותי חינוך וטיפול רחבים.</p></div>
+        <div class="glass card"><span class="tag t-blue"></span><div class="h"><span style="font-size:20px">🌐</span> הפצה ודיגיטציה</div>
+          <p>הנגשה דיגיטלית ובלתי אמצעית של הממצאים והפרוטוקולים לשטח. ייבחנו 1–2 פרוטוקולים לדיגיטציה מלאה.</p></div>
+        <div class="glass card"><span class="tag t-amber"></span><div class="h"><span style="font-size:20px">🏛️</span> השפעה ישירה על מדיניות</div>
+          <p>עיבוד התוצרים והנתונים המוכחים לכדי ניירות עמדה רשמיים והמלצות קונקרטיות למשרדי הממשלה.</p></div>
+        <div class="glass card"><span class="tag t-violet"></span><div class="h"><span style="font-size:20px">🔬</span> העמקת ידע ומחקר המשך</div>
+          <p>שימוש בתוצר המחוזק כבסיס מחקרי איתן ליציאה למחקר המשך ממוקד במסגרת מחזור פיתוח נוסף.</p></div>
+        <div class="glass card" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(167,139,250,.10))">
+          <div style="text-align:center"><div class="metric grad" style="font-size:clamp(26px,3vw,40px)">5</div><div class="mlabel" style="font-size:clamp(13px,1.3vw,16px)">נתיבי מינוף<br>לאחר הפיילוט</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 10 — GANTT ============ -->
+  <section class="slide" data-notes="<b>סטטוס ולוח הזמנים בקצרה:</b> סגירת חוזה ביולי 2026 → Scoping &amp; Scouting עד סוף 2026 → ספרינטים ושידוך תחילת 2027 → <b>עיקר העבודה בשדה</b> יוני 2027–מאי 2028 → כנס סיום חגיגי יוני 2028. תוכנית דו-שנתית עם אבני דרך מדידות וברורות. שתי השורות המודגשות הן נקודות ההכרעה.">
+    <div class="wrap">
+      <div class="shead anim"><div class="t"><h2 class="head">גאנט עבודה ואבני דרך</h2><div class="sub">2026–2028 · מסגירת החוזה ועד לכנס הסיום וחשיפת התוצרים</div></div><div class="num">09</div></div>
+      <div class="anim" style="overflow:auto">
+        <table class="tl">
+          <thead><tr><th>תקופה</th><th>שלב ואבן דרך</th><th>פירוט הפעילות והתוצר הצפוי</th></tr></thead>
+          <tbody>
+            <tr class="key"><td>יולי 2026</td><td><span class="mile">סגירת חוזה</span></td><td>התקשרות רשמית והתנעת הפעילות.</td></tr>
+            <tr><td>אוגוסט–דצמבר 2026</td><td>Scoping &amp; Scouting</td><td>מיפוי מוקדם, איתור 5–10 שדות פעולה ו-8–10 חוקרים ופרקטישנרים.</td></tr>
+            <tr><td>דצמבר 2026</td><td>סגירת המשתתפים</td><td>גיבוש סופי של רשימת אנשי המקצוע והחוקרים.</td></tr>
+            <tr><td>ינואר 2027</td><td>בחירת הארגונים והצוותים</td><td>ביצוע הספרינטים והשידוך המדויק בין המומחים לשדות הפעולה.</td></tr>
+            <tr><td>פברואר–מאי 2027</td><td>ניסוח תוכניות העבודה</td><td>גיבוש מתווה העבודה הצוותית, הגדרת תוצרים ותקצוב ראשוני.</td></tr>
+            <tr class="key"><td>יוני 2027–מאי 2028</td><td><span class="mile">עיקר העבודה בשדה והוצאת פרוטוקול</span></td><td>כ-8 חודשי עבודה נטו בשדה. ניסוי, מחקר מלווה והפקת הפרוטוקול המובנה והסילבוס.</td></tr>
+            <tr><td>יוני 2028</td><td><span class="mile">כנס סיום חגיגי</span></td><td>חשיפת התוצרים, מתן במה לחוקרים ולשדה, והפצת ה-Playbook.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 11 — IMPACT / CLOSING ============ -->
+  <section class="slide" data-notes="<b>סיכום וקריאה לפעולה ליו&quot;ר:</b> זו השקעה ב<b>תשתית ידע מתכללת</b> — מהפיכת פתרונות נקודתיים ומקומיים לפרוטוקולים לאומיים מבוססי-ראיות, שמשפיעים על אלפי בני נוער, על אנשי המקצוע שמלווים אותם, ועל המדיניות עצמה. אם המטרה היום היא עדכון סטטוס — זה המסר לסגור איתו: התשתית נבנית, אבני הדרך ברורות, והפוטנציאל הוא לאומי.">
+    <div class="wrap">
+      <span class="eyebrow anim"><span class="dot"></span>סיכום · הפוטנציאל והאימפקט</span>
+      <h2 class="head anim" style="margin:.3em 0 .4em">מפתרונות נקודתיים<br><span class="grad">לתשתית ידע לאומית מבוססת-ראיות</span></h2>
+      <p class="lead anim">מרכז המו"פ הופך ידע אקדמי ופרקטיקה מהשטח למוצרי ידע מתכללים — שניתנים לשכפול, להטמעה ולהשפעה על מדיניות, לטובת בני הנוער ואנשי המקצוע שמלווים אותם.</p>
+
+      <div class="grid g4 anim" style="margin-top:clamp(22px,3vw,38px)">
+        <div class="glass card" style="text-align:center"><div class="metric grad">20</div><div class="mlabel">נכסי ידע מבוססי-ראיות</div></div>
+        <div class="glass card" style="text-align:center"><div class="metric grad">4</div><div class="mlabel">צוותי Super Teams רב-מגזריים</div></div>
+        <div class="glass card" style="text-align:center"><div class="metric grad">~24<span class="u">חוד'</span></div><div class="mlabel">תוכנית דו-שנתית · 2026–2028</div></div>
+        <div class="glass card" style="text-align:center"><div class="metric grad">5</div><div class="mlabel">נתיבי מינוף ל-Scale ולמדיניות</div></div>
+      </div>
+
+      <div class="insight anim" style="margin-top:clamp(20px,2.6vw,30px)">
+        <div class="ic">🚀</div>
+        <p><b>השורה התחתונה ליו"ר:</b> התשתית נבנית, אבני הדרך מוגדרות ומדידות, והשותפים מחויבים (ג'וינט אשלים, IVN, משרדי החינוך והרווחה). <b>הפוטנציאל הוא לאומי</b> — שינוי שיטתי בדרך שבה השדה הטיפולי-חינוכי עובד עם נוער בסיכון.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- progress dots -->
+<div class="dots" id="dots"></div>
+
+<!-- nav -->
+<div class="nav">
+  <button id="prev" aria-label="הקודם">›</button>
+  <span class="count" id="count">1 / 11</span>
+  <button id="next" aria-label="הבא">‹</button>
+</div>
+
+<button class="notesbtn" id="notesBtn">דברי הצגה <span class="k">N</span></button>
+<div class="hint" id="hint">← → לניווט · N לדברי הצגה · F למסך מלא</div>
+
+<!-- presenter notes panel -->
+<div class="notes" id="notes">
+  <div class="inner">
+    <div class="nh">✦ דברי הצגה ליו"ר <button class="close" id="notesClose">×</button></div>
+    <div class="nbody" id="notesBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const slides=[...document.querySelectorAll('.slide')];
+  const total=slides.length;
+  let i=0;
+  const prog=document.getElementById('prog');
+  const count=document.getElementById('count');
+  const dotsWrap=document.getElementById('dots');
+  const notes=document.getElementById('notes');
+  const notesBody=document.getElementById('notesBody');
+  const hint=document.getElementById('hint');
+
+  slides.forEach((s,idx)=>{
+    const d=document.createElement('i');
+    d.addEventListener('click',()=>go(idx));
+    dotsWrap.appendChild(d);
+  });
+  const dots=[...dotsWrap.children];
+
+  function render(){
+    slides.forEach((s,idx)=>s.classList.toggle('active',idx===i));
+    dots.forEach((d,idx)=>d.classList.toggle('on',idx===i));
+    prog.style.width=((i)/(total-1)*100)+'%';
+    count.textContent=(i+1)+' / '+total;
+    if(notes.classList.contains('open')) fillNotes();
+  }
+  function go(n){ i=Math.max(0,Math.min(total-1,n)); render(); }
+  function next(){ go(i+1); } function prev(){ go(i-1); }
+
+  function fillNotes(){ notesBody.innerHTML = slides[i].getAttribute('data-notes')||'—'; }
+  function toggleNotes(){ notes.classList.toggle('open'); if(notes.classList.contains('open')) fillNotes(); }
+
+  document.getElementById('next').onclick=next;
+  document.getElementById('prev').onclick=prev;
+  document.getElementById('notesBtn').onclick=toggleNotes;
+  document.getElementById('notesClose').onclick=toggleNotes;
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft'||e.key==='PageDown'||e.key===' '||e.key==='ArrowDown'){e.preventDefault();next();}
+    else if(e.key==='ArrowRight'||e.key==='PageUp'||e.key==='ArrowUp'){e.preventDefault();prev();}
+    else if(e.key==='Home'){go(0);} else if(e.key==='End'){go(total-1);}
+    else if(e.key==='n'||e.key==='N'||e.key==='ת'){toggleNotes();}
+    else if(e.key==='f'||e.key==='F'||e.key==='כ'){ if(!document.fullscreenElement)document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+  });
+
+  // swipe (mobile)
+  let sx=0;
+  document.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+  document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>50){ dx<0?next():prev(); }},{passive:true});
+
+  setTimeout(()=>hint.style.opacity='0',5200);
+  render();
+})();
+</script>
+</body>
+</html>
