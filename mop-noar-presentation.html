@@ -209,11 +209,24 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
 .notes .close{margin-inline-start:auto;all:unset;cursor:pointer;color:var(--ink-3);font-size:20px}
 .hint{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);z-index:24;color:var(--ink-3);font-size:12px;font-family:var(--disp);transition:opacity .6s;text-align:center}
 
-@media (max-width:760px){
-  .g2,.g3,.g4{grid-template-columns:1fr}.funnel{grid-template-columns:1fr 1fr}
-  .dots,.beam{display:none}
-  .tl{font-size:12px}.tl td,.tl th{padding:9px 11px}
+/* ---- mobile: scroll each slide vertically (keep text large) ---- */
+@media (max-width:820px){
+  .slide{justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:clamp(24px,7vw,44px) clamp(20px,6vw,40px) calc(102px + env(safe-area-inset-bottom))}
+  .g2,.g3,.g4,.funnel{grid-template-columns:1fr}
+  .dots,.beam,.frame,.notesbtn{display:none}
+  h1.title{font-size:clamp(30px,8.4vw,46px)}
+  h2.head{font-size:clamp(24px,6.8vw,36px)}
+  .lead{font-size:clamp(16px,4.4vw,21px)!important}
+  .shead .head{font-size:clamp(24px,6.8vw,36px)}
+  .fstep .ar{display:none}
+  .tl{font-size:12.5px}.tl td,.tl th{padding:10px 12px}
   .logo-plate{height:40px;padding:6px 11px}
+  .logo-plate img{max-width:150px}
+  .metaline{gap:10px 14px}
+}
+@media (max-width:820px) and (orientation:landscape){
+  .slide{justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.rv{opacity:1}.tl tbody tr{opacity:1}}
 </style>
@@ -542,7 +555,7 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
     prog.style.width=(i/(total-1)*100)+'%'; count.textContent=(i+1)+' / '+total;
     if(notes.classList.contains('open')) fillNotes();
   }
-  function go(n){i=Math.max(0,Math.min(total-1,n));render();}
+  function go(n){i=Math.max(0,Math.min(total-1,n));render();try{slides[i].scrollTop=0;}catch(e){}}
   function next(){go(i+1);} function prev(){go(i-1);}
   function fillNotes(){notesBody.innerHTML=slides[i].getAttribute('data-notes')||'—';}
   function toggleNotes(){notes.classList.toggle('open');if(notes.classList.contains('open'))fillNotes();}
