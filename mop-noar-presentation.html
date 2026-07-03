@@ -229,6 +229,21 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
   .slide{justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.rv{opacity:1}.tl tbody tr{opacity:1}}
+
+/* ---- A4 print · landscape handout, one slide per page ---- */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{height:auto;overflow:visible;background:#fff}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  .bg,.beam,.progress,.nav,.dots,.notesbtn,.hint,.notes{display:none!important}
+  .deck{height:auto}
+  .slide{position:relative;display:flex!important;justify-content:center;height:100vh;width:100%;
+    overflow:hidden;page-break-after:always;break-after:page;
+    background:linear-gradient(158deg,var(--page-1) 0%,var(--page-2) 58%,var(--page-3) 100%)}
+  .slide:last-child{page-break-after:auto;break-after:auto}
+  .rv,.rv-line,.tl tbody tr{opacity:1!important;transform:none!important;animation:none!important}
+  .frame{display:block}
+}
 </style>
 </head>
 <body>
