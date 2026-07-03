@@ -131,8 +131,10 @@ for name in ["joint","ivn","edu","welfare"]:
     html = html.replace(f"logos/{name}.png", f"data:image/png;base64,{b64}")
 pathlib.Path("deck.html").write_text(html, encoding="utf-8")
 ```
-Fonts load from Google Fonts (with system fallbacks). For a fully offline-proof file,
-inline the Rubik + Assistant woff2 as `@font-face` data URIs too.
+Fonts (Rubik + Assistant, Hebrew + Latin) are already **embedded** in `template.html`
+as `@font-face` data URIs, so decks render identically offline and in print with no
+network. If you ever swap fonts, re-inline the woff2 the same way and drop the Google
+Fonts `<link>`.
 
 ## Reference
 
