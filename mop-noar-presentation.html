@@ -170,6 +170,31 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
   font-size:clamp(12px,1.25vw,16px);box-shadow:0 18px 40px -14px rgba(6,140,170,.75);animation:knotpulse 3.6s ease-in-out infinite}
 @keyframes knotpulse{0%,100%{box-shadow:0 18px 40px -14px rgba(6,140,170,.6)}50%{box-shadow:0 18px 54px -12px rgba(6,140,170,.95)}}
 
+/* connector infographic (slide 2 top): academia ↔ hub ↔ field */
+.connect{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(6px,1vw,14px);height:clamp(150px,18vw,200px);margin:2px 0}
+.connect .cnode{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:.35em;text-align:center;
+  background:var(--glass-solid);border:1px solid var(--stroke);border-radius:18px;padding:clamp(14px,1.7vw,24px) clamp(18px,2.2vw,32px);
+  backdrop-filter:blur(12px);box-shadow:0 16px 40px -22px rgba(11,58,80,.42);min-width:clamp(140px,17vw,210px)}
+.connect .cbadge{width:clamp(46px,4.5vw,60px);aspect-ratio:1;border-radius:15px;display:grid;place-items:center;font-size:clamp(22px,2.3vw,30px)}
+.connect .b-blue{background:rgba(11,110,156,.12)}.connect .b-cyan{background:rgba(6,191,214,.14)}
+.connect .ctitle{font-family:var(--disp);font-weight:800;font-size:clamp(19px,2.1vw,28px);color:var(--ink);line-height:1.1}
+.connect .csub{font-family:var(--disp);font-weight:600;font-size:clamp(12px,1.3vw,16px);color:var(--ink-3)}
+.connect .conn{flex:1;position:relative;display:flex;align-items:center;justify-content:center;min-width:34px}
+.connect .conn span{position:absolute;right:0;left:0;top:50%;height:3px;transform:translateY(-50%);background:linear-gradient(90deg,var(--ivn-blue),var(--joint-cyan));border-radius:3px;opacity:.55}
+.connect .conn i{position:relative;z-index:1;font-style:normal;font-weight:800;font-size:clamp(18px,2vw,26px);color:var(--ivn-blue);background:var(--page-2);line-height:1;padding:0 .12em;border-radius:6px}
+.connect .chub{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;gap:.2em;text-align:center;color:#fff;
+  background:var(--grad);border-radius:20px;padding:clamp(14px,1.8vw,26px) clamp(20px,2.4vw,38px);box-shadow:0 20px 46px -16px rgba(6,140,170,.8);animation:knotpulse 3.6s ease-in-out infinite}
+.connect .hub-ic{font-size:clamp(20px,2.1vw,28px)}
+.connect .hub-t{font-family:var(--disp);font-weight:800;font-size:clamp(16px,1.8vw,23px)}
+.connect .hub-s{font-family:var(--disp);font-weight:600;font-size:clamp(11px,1.2vw,14px);opacity:.92}
+@media(max-width:820px){
+  .connect{flex-direction:column;height:auto;gap:8px}
+  .connect .conn{width:auto;height:24px;flex:none}
+  .connect .conn span{right:auto;left:50%;top:0;bottom:0;width:3px;height:auto;transform:translateX(-50%)}
+  .connect .conn i{transform:rotate(90deg)}
+  .connect .cnode,.connect .chub{width:100%;max-width:340px}
+}
+
 /* funnel */
 .funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.1vw,16px);align-items:stretch}
 .fstep{position:relative;border-radius:16px;padding:clamp(15px,1.6vw,22px) clamp(10px,1.1vw,16px);background:var(--glass);border:1px solid var(--stroke);
@@ -302,10 +327,12 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
         <h2 class="head">הפער המבני בין מחקר אקדמי לפרקטיקה בשטח</h2>
         <span class="rule rv-line" style="--d:120"></span>
       </div>
-      <div class="bridge rv" style="--d:170" aria-hidden="true">
-        <div class="line l-top"><span class="lab" style="right:6%">האקדמיה · ידע ומחקר</span></div>
-        <div class="line l-bot"><span class="lab" style="right:6%">השדה · מענים ופרקטיקה</span></div>
-        <div class="span"></div><div class="knot">מרכז<br>המו"פ</div>
+      <div class="connect rv" style="--d:170">
+        <div class="cnode"><div class="cbadge b-blue">🎓</div><div class="ctitle">אקדמיה</div><div class="csub">ידע ומחקר</div></div>
+        <div class="conn"><span></span><i>↔</i></div>
+        <div class="chub"><div class="hub-ic">🔗</div><div class="hub-t">מרכז המו"פ</div><div class="hub-s">הגשר בין העולמות</div></div>
+        <div class="conn"><span></span><i>↔</i></div>
+        <div class="cnode"><div class="cbadge b-cyan">🤝</div><div class="ctitle">השדה</div><div class="csub">מענים ופרקטיקה</div></div>
       </div>
       <div class="grid g2" style="margin-top:8px">
         <div class="glass card rv" style="--d:300"><span class="tag t-blue"></span>
