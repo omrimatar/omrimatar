@@ -171,7 +171,7 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
 @keyframes knotpulse{0%,100%{box-shadow:0 18px 40px -14px rgba(6,140,170,.6)}50%{box-shadow:0 18px 54px -12px rgba(6,140,170,.95)}}
 
 /* funnel */
-.funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1vw,14px);align-items:stretch}
+.funnel{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.1vw,16px);align-items:stretch}
 .fstep{position:relative;border-radius:16px;padding:clamp(15px,1.6vw,22px) clamp(10px,1.1vw,16px);background:var(--glass);border:1px solid var(--stroke);
   backdrop-filter:blur(14px);text-align:center;display:flex;flex-direction:column;gap:.55em;box-shadow:0 16px 34px -22px rgba(11,58,80,.3);transition:transform .3s var(--ease)}
 .fstep:hover{transform:translateY(-4px)}
@@ -312,8 +312,8 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
           <div class="h">הקווים המקבילים של האקדמיה והשטח</div>
           <p>חוקרים מפיקים ידע תיאורטי ואמפירי יקר ערך, אך הוא מתקשה לחלחל לפרקטיקה היומיומית. מנגד, אנשי השטח מפתחים מענים מקומיים מצוינים — אך אלו פועלים לרוב ללא תשתית ראייתית מבוססת ומובנית.</p></div>
         <div class="glass card rv" style="--d:380"><span class="tag t-cyan"></span>
-          <div class="h">חסמי הכניסה של עולם החדשנות</div>
-          <p>קיימת מוטיבציה ורצון עז בקרב אנשי טכנולוגיה וחדשנות לקחת חלק בפתרון אתגרים חברתיים. עם זאת, הם נתקלים בחסמי כניסה משמעותיים ובחוסר היכרות עם השפה המקצועית והמורכבות הייחודית של שדה הנוער בסיכון.</p></div>
+          <div class="h">האתגר של החיבור בין העולמות</div>
+          <p>הידע האקדמי והמענים שבשטח חיים במקביל — עם שפה מקצועית שונה, לוחות זמנים שונים ותרבות עבודה שונה. הפער הזה מקשה לתרגם מחקר לפרקטיקה יומיומית ולהביא חדשנות שתחזיק מעמד בשדה.</p></div>
       </div>
       <div class="insight rv" style="--d:470;margin-top:clamp(16px,2vw,22px)">
         <div class="ic">💡</div>
@@ -344,16 +344,16 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
       <div class="grid g4">
         <div class="glass card rv" style="--d:330"><span class="tag t-navy"></span><div class="h"><span class="chip c-navy">1</span></div>
           <div class="ct">דו"ח תשתית</div>
-          <p>סקירת ספרות עדכנית לצד איסוף וניתוח נתונים מהשטח — תשתית תיאורטית ואמפירית במתודולוגיית מחקר מעורבת.</p></div>
+          <p>סקירת ספרות עדכנית לצד איסוף וניתוח נתונים מהשטח — תשתית תיאורטית ואמפירית.</p></div>
         <div class="glass card rv" style="--d:400"><span class="tag t-blue"></span><div class="h"><span class="chip c-blue">2</span></div>
           <div class="ct">פרוטוקול התערבות</div>
           <p>מודל התערבות מבוסס-ראיות, מותאם בצורה מדויקת לצרכי השטח ומעוגן בספרות המקצועית.</p></div>
         <div class="glass card rv" style="--d:470"><span class="tag t-azure"></span><div class="h"><span class="chip c-azure">3</span></div>
           <div class="ct">דו"ח הערכה</div>
-          <p>הערכת הפיילוט (MVP): תיעוד ההתנסות ב"מעבדות החיות", ניתוח ממצאים בזמן אמת והפקת לקחים.</p></div>
+          <p>הערכת הפיילוט: תיעוד ההתנסות ב"מעבדות החיות", ניתוח ממצאים בזמן אמת והפקת לקחים.</p></div>
         <div class="glass card rv" style="--d:540"><span class="tag t-cyan"></span><div class="h"><span class="chip c-cyan">4</span></div>
           <div class="ct">מדריך יישום והטמעה</div>
-          <p>התוצר הסופי והמזוקק: מפת דרכים, מסקנות אופרטיביות והמלצות קונקרטיות להטמעה רחבה בשטח.</p></div>
+          <p>התוצר הסופי: מפת דרכים, מסקנות אופרטיביות והמלצות קונקרטיות להטמעה רחבה בשטח.</p></div>
       </div>
     </div>
   </section>
@@ -392,16 +392,15 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
   <section class="slide" data-notes="<b>תמונת-העל של איך זה עובד:</b> המודל בנוי כמשפך שמצמצם סיכון בכל אבן דרך — מחשיפה רחבה (קול קורא), דרך שידוך מדויק (ספרינטים), להתנסות עמוקה בשדה, ועד אימפקט והרחבה (Scale). הסלייד שאפשר לעצור עליו ולהראות ליו&quot;ר את כל המסע במבט אחד.">
     <div class="wrap">
       <div class="shead rv" style="--d:0">
-        <div class="eyebrow-top"><span class="ix">05</span>מודל הפעולה המחומש</div>
+        <div class="eyebrow-top"><span class="ix">05</span>מודל הפעולה</div>
         <h2 class="head">אבני דרך מהשלב המקדים ועד לאימפקט הרחב</h2>
         <span class="rule rv-line" style="--d:120"></span>
       </div>
       <div class="funnel">
-        <div class="fstep rv" style="--d:200"><span class="ar">‹</span><div class="ring c-navy">1</div><div class="st">אבן דרך 1</div><div class="ti" style="color:var(--navy)">הכנה וחשיפה</div><p>בחירת תחומים מרכזיים, פרסום קול קורא לגופים ותהליך מיון קפדני.</p></div>
-        <div class="fstep rv" style="--d:280"><span class="ar">‹</span><div class="ring c-blue">2</div><div class="st">אבן דרך 2</div><div class="ti" style="color:var(--ivn-blue)">חיבורים ופיתוח</div><p>ציוות ובחירת Super Teams, איתור שדות התנסות ואישור יציאה לדרך.</p></div>
-        <div class="fstep rv" style="--d:360"><span class="ar">‹</span><div class="ring c-azure">3</div><div class="st">אבן דרך 3</div><div class="ti" style="color:var(--azure)">התנסות ובנייה</div><p>ליווי פנים-צוותי, הכשרות ממוקדות, מפגשי שיא וביקורי ועדת היגוי.</p></div>
-        <div class="fstep rv" style="--d:440"><span class="ar">‹</span><div class="ring c-cyan">4</div><div class="st">אבן דרך 4</div><div class="ti" style="color:#048ba0">חשיפת תוצרים</div><p>כנס סיום חגיגי, הצגת 5 פרוטוקולים, מדריך הטמעה ומפת דרכים.</p></div>
-        <div class="fstep rv" style="--d:520"><div class="ring c-sky">5</div><div class="st">אבן דרך 5</div><div class="ti" style="color:#3a9ec2">אימפקט ו-SCALE</div><p>הרחבת המוצר, הטמעה, הפצה, העמקה והשפעה על מדיניות.</p></div>
+        <div class="fstep rv" style="--d:200"><span class="ar">‹</span><div class="ring c-navy">1</div><div class="st">אבן דרך 1</div><div class="ti" style="color:var(--navy)">איתור ומיפוי אקטיבי</div><p>בחירת תחומים מרכזיים, איתור שדות פעולה ואנשי מקצוע, ותהליך מיון קפדני.</p></div>
+        <div class="fstep rv" style="--d:290"><span class="ar">‹</span><div class="ring c-blue">2</div><div class="st">אבן דרך 2</div><div class="ti" style="color:var(--ivn-blue)">ספרינט בחירה ושידוך</div><p>מפגשי ספרינט לבחינת היתכנות, בחירת הצוותים המצטיינים ושידוך מדויק לשדה.</p></div>
+        <div class="fstep rv" style="--d:380"><span class="ar">‹</span><div class="ring c-azure">3</div><div class="st">אבן דרך 3</div><div class="ti" style="color:var(--azure)">ניסוח העבודה הצוותית</div><p>גיבוש תוכנית עבודה, הגדרת תוצרים ותהליך, ותקצוב ראשוני.</p></div>
+        <div class="fstep rv" style="--d:470"><div class="ring c-cyan">4</div><div class="st">אבן דרך 4</div><div class="ti" style="color:#048ba0">התנסות ובנייה</div><p>פיתוח הפרוטוקול היישומי בשדה, ומחקר מלווה עד לסילבוס הכשרה.</p></div>
       </div>
     </div>
   </section>
@@ -443,7 +442,7 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
   <section class="slide" data-notes="<b>הלב של החדשנות — מנגנון ה&quot;שידוך&quot;:</b> ספרינט קצר ואינטנסיבי שבו בוחנים &quot;בלייב&quot; את הכימיה המקצועית ואת היתכנות הפתרון מול אילוצי השטח — לפני שמתחייבים לעבודה ארוכה. המנגנון מקטין סיכון: רק 4 צוותים מצטיינים ממשיכים לשלב כתיבת תוכניות העבודה.">
     <div class="wrap">
       <div class="shead rv" style="--d:0">
-        <div class="eyebrow-top">אבן דרך 2 · הספרינטים המקצועיים</div>
+        <div class="eyebrow-top">אבן דרך 2 · ספרינט בחירה ושידוך</div>
         <h2 class="head">יצירת ה"שידוך" בין ידע לשדה</h2>
         <span class="rule rv-line" style="--d:120"></span>
       </div>
@@ -466,7 +465,7 @@ h2.head{font-family:var(--disp);font-weight:800;line-height:1.08;letter-spacing:
   <section class="slide" data-notes="<b>כאן קורה הפיתוח האמיתי:</b> כשנה של עבודה צמודה בשדה, עם <b>תקצוב מוגן</b> שסוכם מראש בספרינט, מעטפת הכשרות ובנק יועצים. התוצר בקצה: פרוטוקול יישומי + סילבוס קורס הכשרה — מוכנים לשכפול רחב. ~8 חודשי עבודה נטו (בנטרול חופשות וחגים במסגרות).">
     <div class="wrap">
       <div class="shead rv" style="--d:0">
-        <div class="eyebrow-top">אבן דרך 3 · כ-8 חודשים בשטח</div>
+        <div class="eyebrow-top">אבן דרך 4 · כ-8 חודשים בשטח</div>
         <h2 class="head">ההתנסות והבנייה</h2>
         <span class="rule rv-line" style="--d:120"></span>
       </div>
